@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Chase Xinru Rummery</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Fraunces:ital,wght@1,300;1,500;1,700&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════════════════════
+   LEGO PORTFOLIO — Chase Xinru Rummery
+   Font: Nunito (rounded, friendly, premium)
+         Fraunces italic (editorial accent)
+   Colour: warm cream + ink + lego primaries
+══════════════════════════════════════ */
+:root{
+  --cream: #FAF7F2;
+  --paper: #F2EEE6;
+  --ink:   #1C1810;
+  --mid:   #6A6258;
+  --soft:  #B0A898;
+  --line:  rgba(28,24,16,.1);
+  --sans:  'Nunito',sans-serif;
+  --serif: 'Fraunces',Georgia,serif;
+  /* Lego studs */
+  --y: #F5C542; --r: #E8412A; --b: #3C7DD4;
+  --g: #48C048; --p: #9B59D4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--sans);
+  background:var(--cream);color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;cursor:none;
+}
+a{color:inherit;text-decoration:none;}
+::selection{background:var(--ink);color:var(--cream);}
+
+/* ── CURSOR ── */
+#cur{
+  position:fixed;z-index:9999;pointer-events:none;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--ink);transform:translate(-50%,-50%);
+  transition:width .3s,height .3s,background .2s;
+}
+#cur.lnk{width:42px;height:42px;background:transparent;border:2px solid var(--ink);}
+#cur.drk{background:#fff;}
+#cur.lnk.drk{background:transparent;border-color:#fff;}
+
+/* ── SCROLL BAR ── */
+#prog{position:fixed;top:0;left:0;height:3px;background:var(--y);z-index:9000;width:0%;mix-blend-mode:multiply;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem clamp(1.5rem,5vw,3.5rem);
+  mix-blend-mode:multiply;
+}
+.nav-logo{
+  font-family:var(--sans);font-size:1rem;font-weight:900;
+  color:var(--ink);letter-spacing:-.01em;
+  display:flex;align-items:center;gap:.4rem;
+}
+.nav-logo-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--y);flex-shrink:0;
+}
+.nav-links{display:flex;gap:1.75rem;list-style:none;}
+.nav-links a{
+  font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink);opacity:.5;transition:opacity .2s;
+}
+.nav-links a:hover{opacity:1;}
+
+/* ── LEGO STUD CANVAS (fixed, bricks stack bottom-right) ── */
+#lego-canvas{
+  position:fixed;bottom:0;right:0;
+  width:140px;height:600px;
+  pointer-events:none;z-index:200;
+  overflow:visible;
+}
+
+/* ── SECTIONS ── */
+section{
+  position:relative;
+  min-height:100vh;
+  padding:clamp(5rem,10vh,7rem) clamp(1.5rem,5vw,3.5rem) clamp(4rem,8vh,6rem);
+}
+/* Lego-brick "top edge" on each dark section */
+.dark-section{background:var(--ink);color:#fff;}
+.dark-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:repeating-linear-gradient(90deg,
+    rgba(255,255,255,.14) 0px,rgba(255,255,255,.14) 18px,
+    transparent 18px,transparent 28px);
+}
+.cream-section{background:var(--cream);}
+.cream-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:repeating-linear-gradient(90deg,
+    rgba(28,24,16,.08) 0px,rgba(28,24,16,.08) 18px,
+    transparent 18px,transparent 28px);
+}
+
+/* ─────────────────────────────────────
+   HERO
+───────────────────────────────────── */
+#s-hero{
+  background:var(--cream);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;
+}
+/* Photo slot */
+.hero-photo-slot{
+  position:relative;
+}
+.hero-photo-frame{
+  width:100%;max-width:440px;aspect-ratio:3/4;
+  border-radius:28px;overflow:hidden;
+  background:var(--paper);
+  border:2px solid var(--line);
+  /* Lego stud pattern overlay */
+  position:relative;
+}
+.hero-photo-frame::after{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    0deg,transparent,transparent 28px,rgba(0,0,0,.018) 28px,rgba(0,0,0,.018) 29px),
+    repeating-linear-gradient(
+    90deg,transparent,transparent 28px,rgba(0,0,0,.018) 28px,rgba(0,0,0,.018) 29px);
+  pointer-events:none;border-radius:28px;z-index:1;
+}
+.hero-photo-frame img{
+  width:100%;height:100%;object-fit:contain;
+  object-position:top center;display:block;
+}
+/* ✏️ ADD YOUR PHOTO: replace the placeholder div below with:
+   <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+*/
+.photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.6rem;
+  color:rgba(28,24,16,.2);font-size:.68rem;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+/* Lego stud decorations around photo */
+.stud-deco{
+  position:absolute;border-radius:50%;
+  box-shadow:0 3px 12px rgba(0,0,0,.18);
+  z-index:2;
+}
+.sd-1{width:48px;height:48px;background:var(--y);top:-16px;right:-10px;}
+.sd-2{width:30px;height:30px;background:var(--r);bottom:24px;left:-12px;}
+.sd-3{width:22px;height:22px;background:var(--b);bottom:60px;right:-8px;}
+
+/* Hero text */
+.hero-text{}
+.hero-eyebrow{
+  font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--soft);margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.hero-eyebrow::before{content:'';width:22px;height:2px;background:var(--y);border-radius:2px;}
+.hero-name{
+  font-family:var(--sans);
+  font-size:clamp(3rem,5.5vw,5.5rem);
+  font-weight:900;letter-spacing:-.03em;line-height:1.0;
+  color:var(--ink);margin-bottom:1.2rem;
+}
+.hero-name .accent{
+  font-family:var(--serif);
+  font-style:italic;font-weight:300;
+  display:block;font-size:.85em;
+  color:var(--mid);
+}
+.hero-body{
+  font-size:.95rem;font-weight:400;line-height:1.75;
+  color:var(--mid);max-width:40ch;margin-bottom:2rem;
+}
+/* Lego chip pills */
+.hero-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2.5rem;}
+.lego-chip{
+  font-size:.62rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:.32rem .85rem;border-radius:99px;
+  background:var(--paper);
+  border:2px solid var(--line);
+  color:var(--mid);
+  transition:border-color .2s,color .2s,background .2s;
+  position:relative;overflow:hidden;
+}
+.lego-chip::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:rgba(0,0,0,.06);
+}
+.lego-chip:hover{border-color:var(--y);color:var(--ink);background:#fff;}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:.6rem;
+  font-size:.78rem;font-weight:900;letter-spacing:.04em;text-transform:uppercase;
+  padding:.75rem 1.75rem;border-radius:12px;
+  background:var(--ink);color:var(--cream);
+  box-shadow:0 4px 0 rgba(0,0,0,.4);  /* Lego brick bottom shadow */
+  transition:transform .15s,box-shadow .15s;
+  position:relative;
+}
+.hero-cta:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.4);}
+.hero-cta::before{
+  content:'';position:absolute;inset:0;border-radius:12px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.08),transparent 50%);
+}
+
+/* ─────────────────────────────────────
+   SKILLS
+───────────────────────────────────── */
+#s-skills{
+  background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.s-label{
+  font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  opacity:.3;margin-bottom:2rem;
+  display:flex;align-items:center;gap:.6rem;
+}
+.s-label::before{content:'';width:20px;height:2px;background:currentColor;border-radius:2px;}
+.s-heading{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(2.2rem,4.5vw,4rem);font-weight:500;
+  letter-spacing:-.02em;line-height:1.1;
+  color:#fff;margin-bottom:clamp(2rem,4vw,3.5rem);
+}
+/* Lego brick grid: each column is a "LEGO plate" */
+.sk-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:3px;  /* brick gap */
+  max-width:900px;
+}
+.sk-col{
+  background:#2A2620;
+  padding:1.75rem 1.5rem;
+  border-radius:0;
+  position:relative;
+  transition:background .2s;
+}
+/* Round corners only on outer cells */
+.sk-col:first-child{border-radius:14px 0 0 14px;}
+.sk-col:last-child{border-radius:0 14px 14px 0;}
+.sk-col:hover{background:#322E28;}
+/* Stud dots at top of each column */
+.sk-col::before{
+  content:'● ●';
+  position:absolute;top:.7rem;left:50%;transform:translateX(-50%);
+  font-size:.45rem;letter-spacing:.25rem;
+  color:rgba(255,255,255,.1);
+}
+.sk-col-h{
+  font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);margin-bottom:1.1rem;margin-top:.5rem;
+}
+.sk-row{
+  font-size:.84rem;font-weight:600;color:rgba(255,255,255,.62);
+  padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;gap:.5rem;
+}
+.sk-row:last-child{border-bottom:none;}
+.sk-row::before{
+  content:'';flex-shrink:0;
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+}
+
+/* ─────────────────────────────────────
+   WORK / PROJECTS
+───────────────────────────────────── */
+#s-work{background:var(--cream);}
+.work-top{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:2.5rem;
+}
+.work-heading{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(2.2rem,4.5vw,4rem);font-weight:500;
+  letter-spacing:-.02em;line-height:1.1;
+}
+.work-sub{
+  font-size:.7rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--soft);
+}
+/* 2×2 grid */
+.work-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+/* CARD */
+.card{
+  border-radius:20px;overflow:hidden;
+  cursor:pointer;position:relative;
+  aspect-ratio:4/3;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .35s cubic-bezier(.22,1,.36,1);
+  /* Lego brick shadow */
+  box-shadow:0 5px 0 rgba(0,0,0,.18),0 8px 24px rgba(0,0,0,.12);
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 14px 0 rgba(0,0,0,.14),0 20px 48px rgba(0,0,0,.18);
+}
+/* Stud pattern top edge */
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:5px;z-index:3;
+  background:rgba(255,255,255,.12);
+}
+.card-bg{
+  position:absolute;inset:0;overflow:hidden;border-radius:20px;
+}
+/* ✏️ PROJECT COVER PHOTO: inside .card-bg, add before the character:
+   <img src="cover.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+*/
+.card-char{
+  position:absolute;bottom:0;height:90%;
+  mix-blend-mode:screen;object-fit:contain;
+  transform-origin:bottom center;
+  transition:transform .4s cubic-bezier(.22,1,.36,1);
+}
+.card:hover .card-char{transform:scale(1.07) translateY(-6px);}
+.card-info{
+  position:relative;z-index:2;padding:1.4rem 1.5rem;
+  background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%);
+}
+.card-num{
+  font-size:.58rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.35);margin-bottom:.3rem;
+}
+.card-title{
+  font-family:var(--sans);font-size:1.25rem;font-weight:900;
+  color:#fff;line-height:1.2;margin-bottom:.3rem;
+  letter-spacing:-.01em;
+}
+.card-sub{font-size:.7rem;font-weight:600;color:rgba(255,255,255,.5);}
+.card-chips{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.55rem;}
+.card-chip{
+  font-size:.55rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:.15rem .55rem;border-radius:99px;
+  background:rgba(255,255,255,.15);color:rgba(255,255,255,.7);
+}
+.card-arrow{
+  position:absolute;top:1rem;right:1rem;z-index:3;
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.15);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.85rem;font-weight:900;
+  opacity:0;transform:scale(.7) rotate(-45deg);
+  transition:opacity .25s,transform .25s;
+}
+.card:hover .card-arrow{opacity:1;transform:scale(1) rotate(0deg);}
+/* Project card colours */
+.c-bb{background:#180308;}
+.c-bb .card-bg{background:radial-gradient(ellipse 80% 80% at 62% 38%,rgba(220,30,50,.28),transparent),#180308;}
+.c-tm{background:#1A1005;}
+.c-tm .card-bg{background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(200,140,35,.22),transparent),#1A1005;}
+.c-tb{background:#060F1E;}
+.c-tb .card-bg{background:radial-gradient(ellipse 80% 80% at 50% 28%,rgba(40,70,180,.28),transparent),#060F1E;}
+.c-mi{background:#041412;}
+.c-mi .card-bg{background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(0,175,140,.22),transparent),#041412;}
+
+/* ─────────────────────────────────────
+   PROJECT DRAWER
+───────────────────────────────────── */
+.drawer{
+  position:fixed;inset:0;z-index:800;
+  background:var(--cream);
+  transform:translateY(100%);
+  transition:transform .5s cubic-bezier(.22,1,.36,1);
+  overflow-y:auto;
+}
+.drawer.open{transform:none;}
+.drawer-header{
+  position:sticky;top:0;
+  padding:1.2rem 1.5rem;
+  background:rgba(250,247,242,.9);backdrop-filter:blur(16px);
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:2px solid var(--line);
+  z-index:10;
+}
+.drawer-close{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--ink);color:#fff;border:none;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;font-weight:900;cursor:none;
+  box-shadow:0 3px 0 rgba(0,0,0,.3);
+  transition:transform .15s,box-shadow .15s;
+}
+.drawer-close:hover{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.3);}
+.drawer-inner{max-width:860px;margin:0 auto;padding:3rem clamp(1.5rem,5vw,3rem) 5rem;}
+.drawer-ey{font-size:.62rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:.8rem;}
+.drawer-title{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(2rem,5vw,4rem);font-weight:500;
+  letter-spacing:-.02em;line-height:1.05;margin-bottom:1.3rem;
+}
+.drawer-desc{font-size:.95rem;font-weight:400;line-height:1.82;color:var(--mid);max-width:58ch;margin-bottom:2rem;}
+.drawer-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2.5rem;}
+.drawer-tag{
+  font-size:.62rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+  padding:.28rem .8rem;border-radius:99px;
+  background:var(--paper);border:2px solid var(--line);color:var(--mid);
+}
+.drawer-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
+.drawer-photo {
+  border-radius: 14px;
+  background: var(--paper);
+  overflow: hidden;
+  border: 2px dashed rgba(28,24,16,.1);
+}
+.drawer-photo img {
+  width: 100%;
+  height: auto;            /* ← 关键 */
+  display: block;
+}
+.drawer-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35);}
+/* Accent per drawer */
+.dr-bb .drawer-title{color:#D02040;}
+.dr-tm .drawer-title{color:#C08020;}
+.dr-tb .drawer-title{color:#2A4FCA;}
+.dr-mi .drawer-title{color:#00A880;}
+
+/* ─────────────────────────────────────
+   ABOUT
+───────────────────────────────────── */
+#s-about{
+  background:var(--ink);color:#fff;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.about-layout{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2.5rem,5vw,5rem);align-items:start;max-width:1000px;
+}
+.about-heading{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(2.2rem,4.5vw,4rem);font-weight:500;
+  letter-spacing:-.02em;line-height:1.1;color:#fff;margin-bottom:1.4rem;
+}
+.about-p{font-size:.9rem;font-weight:400;line-height:1.85;color:rgba(255,255,255,.52);margin-bottom:1rem;}
+/* Lego fact tiles */
+.fact-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:1.75rem;}
+.fact-tile{
+  padding:1.1rem 1.25rem;
+  background:#2A2620;
+  border-radius:14px;
+  border-top:3px solid rgba(255,255,255,.08);
+  transition:background .2s;position:relative;
+}
+.fact-tile:hover{background:#342E28;}
+/* stud dots */
+.fact-tile::before{
+  content:'•  •';position:absolute;top:.45rem;left:50%;transform:translateX(-50%);
+  font-size:.4rem;letter-spacing:.35rem;color:rgba(255,255,255,.1);
+}
+.fact-icon{font-size:1.3rem;margin-bottom:.45rem;margin-top:.35rem;}
+.fact-l{font-size:.55rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.2rem;}
+.fact-v{font-size:.84rem;font-weight:600;color:rgba(255,255,255,.68);}
+/* Photo wall */
+.photo-wall{
+  display:grid;grid-template-columns:1fr 1fr;gap:.65rem;
+}
+.pw-slot{
+  border-radius:14px;overflow:hidden;
+  background:#2A2620;
+  border:2px dashed rgba(255,255,255,.1);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.4rem;min-height:140px;
+  font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:rgba(255,255,255,.2);
+  transition:background .2s;
+}
+.pw-slot:hover{background:#342E28;}
+.pw-slot:first-child{grid-row:span 2;min-height:302px;}
+.pw-slot img{width:100%;height:100%;object-fit:contain;}
+/* ✏️ PHOTO WALL: replace each pw-slot content with:
+   <img src="life-photo.jpg">
+*/
+.add-circle{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:1rem;}
+
+/* ─────────────────────────────────────
+   CONTACT
+───────────────────────────────────── */
+#s-contact{
+  background:#0F0C08;color:#fff;
+  display:flex;flex-direction:column;justify-content:space-between;
+}
+.contact-heading{
+  font-family:var(--serif);font-style:italic;
+  font-size:clamp(3rem,7vw,7rem);font-weight:500;
+  letter-spacing:-.04em;line-height:.95;
+  color:#fff;margin-bottom:3.5rem;
+}
+.contact-heading span{color:rgba(255,255,255,.3);}
+.clinks{max-width:560px;}
+.crow{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem 0;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:padding-left .25s;
+}
+.crow:first-child{border-top:1px solid rgba(255,255,255,.08);}
+.crow:hover{padding-left:.6rem;}
+.crow-label{
+  font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);width:90px;flex-shrink:0;
+}
+.crow-val{
+  font-family:var(--sans);font-size:1rem;font-weight:600;
+  color:rgba(255,255,255,.8);flex:1;
+}
+.crow-arr{
+  font-size:.9rem;color:rgba(255,255,255,.28);
+  transition:transform .2s,color .2s;
+}
+.crow:hover .crow-arr{transform:translate(3px,-3px);color:#fff;}
+.contact-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;padding-top:3.5rem;
+}
+.contact-foot p{font-size:.62rem;color:rgba(255,255,255,.18);letter-spacing:.06em;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  #s-hero{grid-template-columns:1fr;padding-top:6rem;}
+  .hero-photo-frame{max-width:260px;aspect-ratio:1/1;margin:0 auto;}
+  .hero-text{padding-left:0;}
+  .sk-grid{grid-template-columns:1fr 1fr;}
+  .work-grid{grid-template-columns:1fr;}
+  .about-layout{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  nav{padding:1.1rem 1.5rem;}
+  #lego-canvas{width:100px;}
+}
+@media(max-width:500px){
+  .sk-grid{grid-template-columns:1fr;}
+  .sk-col:first-child,.sk-col:last-child{border-radius:0;}
+  .sk-col:first-child{border-radius:14px 14px 0 0;}
+  .sk-col:last-child{border-radius:0 0 14px 14px;}
+  .drawer-photos{grid-template-columns:1fr;}
+  .photo-wall{grid-template-columns:1fr;}
+  .pw-slot:first-child{grid-row:auto;min-height:180px;}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div>
+<div id="prog"></div>
+<div id="lego-canvas"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Chase.
+  </div>
+  <ul class="nav-links">
+    <li><a href="#s-hero">Home</a></li>
+    <li><a href="#s-work">Work</a></li>
+    <li><a href="#s-about">About</a></li>
+    <li><a href="#s-contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section id="s-hero" class="cream-section">
+  <div class="hero-photo-slot">
+    <div class="hero-photo-frame">
+      <!-- ✏️ ADD YOUR PHOTO: delete the div below, add:
+           <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      -->
+      <div class="photo-placeholder">
+        <img src="passport.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
+      </div>
+    </div>
+    <div class="stud-deco sd-1"></div>
+    <div class="stud-deco sd-2"></div>
+    <div class="stud-deco sd-3"></div>
+  </div>
+
+  <div class="hero-text">
+    <p class="hero-eyebrow">Designer &amp; Maker · UIUC</p>
+    <h1 class="hero-name">
+      Chase Xinru<br>
+      Rummery.
+      <span class="accent">My Portfolio</span>
+    </h1>
+    <p class="hero-body">
+      A student at the University of Illinois —
+      building experiences at the intersection of art,
+      interaction design, and technology.
+    </p>
+    <div class="hero-chips">
+      <span class="lego-chip">UX / UI</span>
+      <span class="lego-chip">Interaction Design</span>
+      <span class="lego-chip">HCI</span>
+      <span class="lego-chip">Physical Computing</span>
+      <span class="lego-chip">Front-End</span>
+    </div>
+    <a href="#s-work" class="hero-cta">View my work →</a>
+  </div>
+</section>
+
+<!-- ══ SKILLS ══ -->
+<section id="s-skills" class="dark-section">
+  <div class="s-label" style="color:#fff;">02 · Skills</div>
+  <h2 class="s-heading">What I bring.</h2>
+  <div class="sk-grid">
+    <div class="sk-col">
+      <p class="sk-col-h">Design</p>
+      <div class="sk-row">UI / UX Design</div>
+      <div class="sk-row">Interaction Design</div>
+      <div class="sk-row">Wireframing</div>
+      <div class="sk-row">Prototyping</div>
+      <div class="sk-row">Figma · Procreate</div>
+    </div>
+    <div class="sk-col">
+      <p class="sk-col-h">Making</p>
+      <div class="sk-row">Physical Computing</div>
+      <div class="sk-row">Arduino</div>
+      <div class="sk-row">TouchDesigner</div>
+      <div class="sk-row">Blender 3D</div>
+      <div class="sk-row">NFC · AR</div>
+    </div>
+    <div class="sk-col">
+      <p class="sk-col-h">Code</p>
+      <div class="sk-row">HTML / CSS</div>
+      <div class="sk-row">Python</div>
+      <div class="sk-row">SQL</div>
+    </div>
+    <div class="sk-col">
+      <p class="sk-col-h">Research</p>
+      <div class="sk-row">Usability Testing</div>
+      <div class="sk-row">User Interviews</div>
+      <div class="sk-row">HCI Principles</div>
+      <div class="sk-row">Data Analysis</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WORK ══ -->
+<section id="s-work" class="cream-section">
+  <div class="work-top">
+    <h2 class="work-heading">View work.</h2>
+    <p class="work-sub">Click a card to explore</p>
+  </div>
+  <div class="work-grid">
+
+    <div class="card c-bb" onclick="openD('dr-bb')">
+      <div class="card-bg">
+        <!-- ✏️ COVER bb: add <img src="bb-cover.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"> -->
+        <img class="card-char" src="baby.png">
+      </div>
+      <div class="card-arrow">↗</div>
+      <div class="card-info">
+        <p class="card-num">01</p>
+        <h3 class="card-title">Baby Ballon</h3>
+        <p class="card-sub">Mobile Game · UX Lead & Illustrator</p>
+        <div class="card-chips"><span class="card-chip">Game UX</span><span class="card-chip">Procreate</span><span class="card-chip">User Testing</span></div>
+      </div>
+    </div>
+
+    <div class="card c-tm" onclick="openD('dr-tm')">
+      <div class="card-bg">
+        <!-- ✏️ COVER tm: add cover image here -->
+        <img class="card-char" src="teatable.png">
+      </div>
+      <div class="card-arrow">↗</div>
+      <div class="card-info">
+        <p class="card-num">02</p>
+        <h3 class="card-title">Tea Mate</h3>
+        <p class="card-sub">Smart Tea Table · Arduino + TouchDesigner</p>
+        <div class="card-chips"><span class="card-chip">Physical Computing</span><span class="card-chip">Arduino</span></div>
+      </div>
+    </div>
+
+    <div class="card c-tb" onclick="openD('dr-tb')">
+      <div class="card-bg">
+        <!-- ✏️ COVER tb -->
+         <img class="card-char" src="brothers.png">
+      </div>
+      <div class="card-arrow">↗</div>
+      <div class="card-info">
+        <p class="card-num">03</p>
+        <h3 class="card-title">Two Brothers' Diary</h3>
+        <p class="card-sub">Interactive Pop-Up Book · NFC + AR + 3D</p>
+        <div class="card-chips"><span class="card-chip">NFC</span><span class="card-chip">AR</span><span class="card-chip">Blender</span></div>
+      </div>
+    </div>
+
+    <div class="card c-mi" onclick="openD('dr-mi')">
+      <div class="card-bg">
+        <!-- ✏️ COVER mi -->
+        <img class="card-char" src="island.png">
+      </div>
+      <div class="card-arrow">↗</div>
+      <div class="card-info">
+        <p class="card-num">04</p>
+        <h3 class="card-title">Musical Island</h3>
+        <p class="card-sub">Concept + Model + Branding</p>
+        <div class="card-chips"><span class="card-chip">Concept</span><span class="card-chip">Model Making</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section id="s-about" class="dark-section">
+  <div class="s-label" style="color:#fff;">04 · Who I am</div>
+  <div class="about-layout">
+    <div>
+      <h2 class="about-heading">Beyond the screen.</h2>
+      <p class="about-p">Born in the UK, raised in China — I grew up moving between cultures, which gave me a natural curiosity about how people think, communicate, and interact.</p>
+      <p class="about-p">I'm studying Studio Art at UIUC with plans to move into Information Sciences. Outside work, you'll find me on the basketball court or attempting to climb (still a beginner).</p>
+      <p class="about-p">Playful and curious by nature. I ask "why not?" more than "why."</p>
+      <div class="fact-grid">
+        <div class="fact-tile"><div class="fact-icon">🏀</div><p class="fact-l">Sport</p><p class="fact-v">Basketball · Bouldering · Badminton</p></div>
+        <div class="fact-tile"><div class="fact-icon">🌍</div><p class="fact-l">Background</p><p class="fact-v">Born UK · Raised China</p></div>
+        <div class="fact-tile"><div class="fact-icon">🎓</div><p class="fact-l">Education</p><p class="fact-v">UIUC · Studio Art → iSchool</p></div>
+        <div class="fact-tile"><div class="fact-icon">✦</div><p class="fact-l">Vibe</p><p class="fact-v">Curious · Playful</p></div>
+      </div>
+    </div>
+    <!-- ✏️ PHOTO WALL: replace each pw-slot content with <img src="..."> -->
+    <div class="photo-wall">
+      <div class="pw-slot"><img src="photo1.JPG"></div>
+      <div class="pw-slot"><img src="photo2.png"></div>
+      <div class="pw-slot"><img src="photo3.png"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="s-contact">
+  <div>
+    <h2 class="contact-heading">Let's<br><span>talk.</span></h2>
+    <div class="clinks">
+      <a href="mailto:cxr2@illinois.edu" class="crow">
+        <span class="crow-label">Email</span>
+        <span class="crow-val">cxr2@illinois.edu</span>
+        <span class="crow-arr">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/chase-rummery" target="_blank" class="crow">
+        <span class="crow-label">LinkedIn</span>
+        <span class="crow-val">linkedin.com/in/chase-rummery</span>
+        <span class="crow-arr">↗</span>
+      </a>
+      <div class="crow">
+        <span class="crow-label">School</span>
+        <span class="crow-val">UIUC · Studio Art → iSchool</span>
+        <span class="crow-arr"></span>
+      </div>
+    </div>
+  </div>
+  <div class="contact-foot">
+    <p>© 2025 Chase Xinru Rummery</p>
+    <p>Designed &amp; built by Chase</p>
+  </div>
+</section>
+
+<!-- ══ PROJECT DRAWERS ══ -->
+<div class="drawer dr-bb" id="dr-bb">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Baby Ballon · 01/04</span>
+    <button class="drawer-close" onclick="closeD('dr-bb')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Mobile Game Design</p>
+    <h2 class="drawer-title">Baby Ballon.</h2>
+    <p class="drawer-desc">A social-awareness mobile game raising consciousness about "social giant babies." You play as the parent, facing real daily dilemmas. Three distinct endings based on your choices — designed, illustrated in Procreate, and user-tested end to end.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Game UX</span><span class="drawer-tag">Character Design</span><span class="drawer-tag">User Testing</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">3 Endings</span></div>
+    <div class="drawer-photos">
+      <!-- ✏️ ADD DETAIL PHOTOS: replace each div content with <img src="..."> -->
+      <div class="drawer-photo">
+        <img src="baby1.png">
+      </div>
+      <div class="drawer-photo">
+        <img src="baby2.png">
+      </div>
+      <div class="drawer-photo">
+        <img src="baby3.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="baby4.png">
+      </div>
+    </div>
+    <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn">Watch Demo ↗</a>
+  </div>
+</div>
+
+<div class="drawer dr-tm" id="dr-tm">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Tea Mate · 02/04</span>
+    <button class="drawer-close" onclick="closeD('dr-tm')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Physical Computing + UX</p>
+    <h2 class="drawer-title">Tea Mate.</h2>
+    <p class="drawer-desc">A smart tea table guiding users through Chinese tea culture step by step. Arduino sensors track brew weight and time, TouchDesigner plays instruction video via serial port, and QR payment is built in. From concept sketch to working physical prototype.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Arduino</span><span class="drawer-tag">TouchDesigner</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Physical Prototype</span><span class="drawer-tag">HCI</span></div>
+    <div class="drawer-photos">
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="teatable1.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="teatable2.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="teatable3.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="teatable4.png">
+      </div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=ONm0FoyzQ4w" target="_blank" class="drawer-btn">Watch Demo ↗</a>
+  </div>
+</div>
+
+<div class="drawer dr-tb" id="dr-tb">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Two Brothers' Diary · 03/04</span>
+    <button class="drawer-close" onclick="closeD('dr-tb')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Interactive Book Design</p>
+    <h2 class="drawer-title">Two Brothers' Diary.</h2>
+    <p class="drawer-desc">A physical pop-up book combining NFC audio chips, AR overlays via Reality Composer, and Blender 3D modelling. Scan a page — hear audio. Push the slider — characters move. Led a multidisciplinary team from research to final product.</p>
+    <div class="drawer-tags"><span class="drawer-tag">NFC Interaction</span><span class="drawer-tag">AR · Reality Composer</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Team Lead</span></div>
+    <div class="drawer-photos">
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="brother1.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="brother2.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="brother3.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="brother4.png">
+      </div>
+    </div>
+    <a href="https://youtu.be/aYRxI1NvMRog" target="_blank" class="drawer-btn">Watch Demo ↗</a>
+  </div>
+</div>
+
+<div class="drawer dr-mi" id="dr-mi">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Musical Island · 04/04</span>
+    <button class="drawer-close" onclick="closeD('dr-mi')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Concept + Model + Branding</p>
+    <h2 class="drawer-title">Musical Island.</h2>
+    <p class="drawer-desc">A stress-relief island concept for people with sleep disorders — covering island zoning, sleep pod UX, a custom musical typeface, Procreate illustrations, and a physical foam model at 2400×1800mm. Data-driven research into global sleep disorders informed every decision.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Concept Design</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Physical Model</span><span class="drawer-tag">Typography Design</span><span class="drawer-tag">UX Research</span></div>
+    <div class="drawer-photos">
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="island1.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="island2.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="island3.png">
+      </div>
+      <div class="drawer-photo">
+        <img class="drawer-photo" src="island4.png">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── CURSOR ── */
+const cur=document.getElementById('cur');
+let cx=0,cy=0;
+document.addEventListener('mousemove',e=>{
+  cx=e.clientX;cy=e.clientY;
+  cur.style.left=cx+'px';cur.style.top=cy+'px';
+  const el=document.elementFromPoint(cx,cy);
+  const dark=el?.closest('#s-skills,#s-about,#s-contact,.c-bb,.c-tm,.c-tb,.c-mi,.drawer');
+  cur.classList.toggle('drk',!!dark);
+});
+document.querySelectorAll('a,button,.card,.fact-tile,.crow,.lego-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('lnk'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('lnk'));
+});
+
+/* ── SCROLL PROGRESS ── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('prog').style.width=
+    (scrollY/(document.body.scrollHeight-innerHeight)*100)+'%';
+},{passive:true});
+
+/* ── DRAWERS ── */
+function openD(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
+function closeD(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    document.querySelectorAll('.drawer.open').forEach(d=>{d.classList.remove('open');document.body.style.overflow='';} );
+  }
+});
+
+/* ══════════════════════════════════════
+   LEGO BRICKS
+   Fixed bottom-right stack.
+   5 bricks, one per section.
+   Scroll DOWN into section → brick drops onto stack (no gap).
+   Scroll BACK UP → brick flies off upward.
+   No labels.
+══════════════════════════════════════ */
+const COLS=[
+  ['#F5C542','#C89510','#A07800'],  // yellow
+  ['#E8412A','#B82010','#900808'],  // red
+  ['#3C7DD4','#1A5CB0','#0A3C8C'],  // blue
+  ['#48C048','#289628','#107210'],  // green
+  ['#9B59D4','#7030B0','#501890'],  // purple
+];
+const BW=96, BH=84;
+
+/* In isometric view, "how much does the next brick
+   rise above the current one?"
+   The visible height of a brick face ≈ BH * 0.35   */
+const RISE = Math.round(BH * 0.35);  // ≈ 29px — tight stack, no gap
+
+const RIGHT_PAD = 24;
+const BASE_BOT  = 28;  // distance from bottom of viewport to brick 0 base
+
+function makeBrick(top,front,side){
+  /* 2×2 isometric brick via pure SVG */
+  const w=BW,h=BH;
+  const cx=w/2,cy=h*0.44;
+  const tw=w*0.78,th=h*0.28,fh=h*0.32;
+  // top face
+  const T=`${cx},${cy-th} ${cx+tw/2},${cy-th/2} ${cx},${cy} ${cx-tw/2},${cy-th/2}`;
+  // front face
+  const F=`${cx-tw/2},${cy-th/2} ${cx},${cy} ${cx},${cy+fh} ${cx-tw/2},${cy-th/2+fh}`;
+  // right face
+  const R=`${cx},${cy} ${cx+tw/2},${cy-th/2} ${cx+tw/2},${cy-th/2+fh} ${cx},${cy+fh}`;
+  // studs (2×2)
+  const sr=w*0.072, ssh=h*0.038;
+  const studPositions=[
+    [cx-tw*0.22, cy-th*0.72],
+    [cx+tw*0.22, cy-th*0.72],
+    [cx-tw*0.22, cy-th*0.28],
+    [cx+tw*0.22, cy-th*0.28],
+  ];
+  const studs=studPositions.map(([sx,sy])=>
+    `<ellipse cx="${sx}" cy="${sy-ssh}" rx="${sr}" ry="${ssh*1.1}" fill="${top}" stroke="rgba(0,0,0,.22)" stroke-width=".6"/>
+     <ellipse cx="${sx}" cy="${sy-ssh*0.4}" rx="${sr}" ry="${ssh*0.85}" fill="${top}" stroke="rgba(255,255,255,.28)" stroke-width=".5"/>`
+  ).join('');
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="${T}" fill="${top}"   stroke="rgba(0,0,0,.2)"  stroke-width=".8"/>
+    <polygon points="${F}" fill="${front}" stroke="rgba(0,0,0,.15)" stroke-width=".7"/>
+    <polygon points="${R}" fill="${side}"  stroke="rgba(0,0,0,.15)" stroke-width=".7"/>
+    ${studs}
+  </svg>`;
+}
+
+const canvas=document.getElementById('lego-canvas');
+const brickEls=COLS.map(([top,front,side],i)=>{
+  const el=document.createElement('div');
+  /* Each brick sits exactly RISE pixels higher than the one below,
+     so they look like a real stacked LEGO tower with no gap. */
+  const botOffset = BASE_BOT + i * RISE;
+  el.style.cssText=`
+    position:fixed;
+    right:${RIGHT_PAD}px;
+    bottom:${botOffset}px;
+    width:${BW}px;height:${BH}px;
+    pointer-events:none;
+    z-index:200;
+    opacity:0;
+    transform:translateY(-${BH+30}px);
+    transition:opacity .38s ease, transform .5s cubic-bezier(.22,1,.36,1);
+  `;
+  el.innerHTML=makeBrick(top,front,side);
+  canvas.appendChild(el);
+  return el;
+});
+
+const SECS=['s-hero','s-skills','s-work','s-about','s-contact'];
+function updateBricks(){
+  let n=0;
+  SECS.forEach(id=>{
+    const s=document.getElementById(id);
+    if(s&&s.getBoundingClientRect().top<innerHeight*0.55) n++;
+  });
+  brickEls.forEach((el,i)=>{
+    if(i<n){el.style.opacity='1';el.style.transform='translateY(0)';}
+    else{el.style.opacity='0';el.style.transform=`translateY(-${BH+30}px)`;}
+  });
+}
+window.addEventListener('scroll',updateBricks,{passive:true});
+window.addEventListener('resize',updateBricks);
+setTimeout(updateBricks,200);
+</script>
+</body>
+</html>
