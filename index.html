@@ -310,9 +310,37 @@ section{
   content:'';position:absolute;top:0;left:0;right:0;height:5px;z-index:3;
   background:rgba(255,255,255,.12);
 }
-.card-bg{
-  position:absolute;inset:0;overflow:hidden;border-radius:20px;
-}
+/* ── 新增：卡片装饰元素通用 ── */
+.card-deco{position:absolute;z-index:1;pointer-events:none;}
+
+/* Baby Ballon — 红色斜纹 + 光晕圆圈 */
+.bb-lines{inset:0;background:repeating-linear-gradient(135deg,transparent,transparent 28px,rgba(220,30,50,.06) 28px,rgba(220,30,50,.06) 29px);}
+.bb-circle{width:180px;height:180px;border-radius:50%;border:1px solid rgba(220,30,50,.15);top:-40px;right:-40px;}
+.bb-circle2{width:260px;height:260px;border-radius:50%;border:1px solid rgba(220,30,50,.08);top:-80px;right:-80px;}
+.bb-dot{width:6px;height:6px;border-radius:50%;background:#E8412A;top:28px;left:20px;box-shadow:0 0 12px rgba(232,65,42,.6);}
+
+/* Tea Mate — 暖金网格 + 弧线 */
+.tm-grid{inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 30px,rgba(200,140,35,.05) 30px,rgba(200,140,35,.05) 31px),repeating-linear-gradient(90deg,transparent,transparent 30px,rgba(200,140,35,.05) 30px,rgba(200,140,35,.05) 31px);}
+.tm-arc{width:200px;height:200px;border-radius:50%;border:1px solid rgba(200,140,35,.2);border-bottom:none;border-right:none;top:20px;right:20px;}
+.tm-dot{width:8px;height:8px;border-radius:50%;background:#C8921A;top:24px;right:28px;box-shadow:0 0 16px rgba(200,140,35,.7);}
+
+/* Two Brothers — 蓝色点阵 + 旋转方块 */
+.tb-dots{inset:0;background:radial-gradient(circle,rgba(60,125,212,.12) 1px,transparent 1px);background-size:24px 24px;}
+.tb-rect{width:80px;height:80px;border:1px solid rgba(60,125,212,.2);top:24px;right:24px;transform:rotate(20deg);border-radius:8px;}
+.tb-rect2{width:50px;height:50px;border:1px solid rgba(60,125,212,.12);top:44px;right:44px;transform:rotate(10deg);border-radius:4px;}
+.tb-dot{width:7px;height:7px;border-radius:50%;background:#3C7DD4;top:30px;left:22px;box-shadow:0 0 14px rgba(60,125,212,.7);}
+
+/* Musical Island — 绿色斜格 + 同心圆 */
+.mi-wave{inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(0,175,140,.04) 20px,rgba(0,175,140,.04) 21px);}
+.mi-ring{width:140px;height:140px;border-radius:50%;border:1px solid rgba(0,175,140,.18);top:-20px;left:-20px;}
+.mi-ring2{width:90px;height:90px;border-radius:50%;border:1px solid rgba(0,175,140,.12);top:10px;left:10px;}
+.mi-dot{width:7px;height:7px;border-radius:50%;background:#00AF8C;top:26px;right:22px;box-shadow:0 0 14px rgba(0,175,140,.7);}
+
+/* chip 颜色 */
+.c-bb .card-chip{background:rgba(232,65,42,.2);color:rgba(255,160,150,.8);}
+.c-tm .card-chip{background:rgba(200,140,35,.2);color:rgba(255,210,120,.8);}
+.c-tb .card-chip{background:rgba(60,125,212,.2);color:rgba(140,190,255,.8);}
+.c-mi .card-chip{background:rgba(0,175,140,.2);color:rgba(100,230,200,.8);}
 /* ✏️ PROJECT COVER PHOTO: inside .card-bg, add before the character:
    <img src="cover.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
 */
@@ -648,14 +676,15 @@ section{
   </div>
   <div class="work-grid">
 
-    <div class="card c-bb" onclick="openD('dr-bb')">
-      <div class="card-bg">
-        <!-- ✏️ COVER bb: add <img src="bb-cover.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"> -->
-        <img class="card-char" src="baby.png">
-      </div>
-      <div class="card-arrow">↗</div>
-      <div class="card-info">
-        <p class="card-num">01</p>
+<div class="card c-bb" onclick="openD('dr-bb')">
+  <div class="card-bg">
+    <div class="card-deco bb-lines"></div>
+    <div class="card-deco bb-circle"></div>
+    <div class="card-deco bb-circle2"></div>
+    <div class="card-deco bb-dot"></div>
+  </div>
+  <div class="card-arrow">↗</div>
+  <div class="card-info">
         <h3 class="card-title">Baby Ballon</h3>
         <p class="card-sub">Mobile Game · UX Lead & Illustrator</p>
         <div class="card-chips"><span class="card-chip">Game UX</span><span class="card-chip">Procreate</span><span class="card-chip">User Testing</span></div>
@@ -665,8 +694,9 @@ section{
     <div class="card c-tm" onclick="openD('dr-tm')">
       <div class="card-bg">
         <!-- ✏️ COVER tm: add cover image here -->
-        <img class="card-char" src="teatable.png">
+
       </div>
+      
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">02</p>
@@ -679,7 +709,7 @@ section{
     <div class="card c-tb" onclick="openD('dr-tb')">
       <div class="card-bg">
         <!-- ✏️ COVER tb -->
-         <img class="card-char" src="brothers.png">
+
       </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
@@ -693,7 +723,7 @@ section{
     <div class="card c-mi" onclick="openD('dr-mi')">
       <div class="card-bg">
         <!-- ✏️ COVER mi -->
-        <img class="card-char" src="island.png">
+
       </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
