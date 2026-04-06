@@ -77,7 +77,7 @@ nav{
 #lego-canvas{
   position:fixed;bottom:0;right:0;
   width:140px;height:600px;
-  pointer-events:none;z-index:200;
+  pointer-events:none;z-index:50;
   overflow:visible;
 }
 
@@ -131,10 +131,7 @@ section{
     90deg,transparent,transparent 28px,rgba(0,0,0,.018) 28px,rgba(0,0,0,.018) 29px);
   pointer-events:none;border-radius:28px;z-index:1;
 }
-.hero-photo-frame img{
-  width:100%;height:100%;object-fit:contain;
-  object-position:top center;display:block;
-}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
 /* ✏️ ADD YOUR PHOTO: replace the placeholder div below with:
    <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
 */
@@ -434,17 +431,8 @@ section{
   background:var(--paper);border:2px solid var(--line);color:var(--mid);
 }
 .drawer-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
-.drawer-photo {
-  border-radius: 14px;
-  background: var(--paper);
-  overflow: hidden;
-  border: 2px dashed rgba(28,24,16,.1);
-}
-.drawer-photo img {
-  width: 100%;
-  height: auto;            /* ← 关键 */
-  display: block;
-}
+.drawer-photo{border-radius:14px;background:var(--paper);overflow:hidden;border:2px dashed rgba(28,24,16,.1);}
+.drawer-photo img{width:100%;height:auto;display:block;border-radius:10px;}
 .drawer-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35);}
 /* Accent per drawer */
 .dr-bb .drawer-title{color:#D02040;}
@@ -496,14 +484,14 @@ section{
   background:#2A2620;
   border:2px dashed rgba(255,255,255,.1);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:.4rem;min-height:140px;
+  gap:.4rem;min-height:60px;
   font-size:.6rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
   color:rgba(255,255,255,.2);
   transition:background .2s;
 }
 .pw-slot:hover{background:#342E28;}
-.pw-slot:first-child{grid-row:span 2;min-height:302px;}
-.pw-slot img{width:100%;height:100%;object-fit:contain;}
+.pw-slot:first-child{grid-row:span 2;}
+.pw-slot img{width:100%;height:auto;display:block;border-radius:10px;}
 /* ✏️ PHOTO WALL: replace each pw-slot content with:
    <img src="life-photo.jpg">
 */
@@ -571,6 +559,87 @@ section{
   .photo-wall{grid-template-columns:1fr;}
   .pw-slot:first-child{grid-row:auto;min-height:180px;}
 }
+
+/* ── Work bento layout ── */
+.work-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:.85rem;
+  align-items:start;
+}
+/* Tea Mate: tall left column, spans 2 rows */
+.card.c-tm{
+  grid-row:1 / 3;
+  aspect-ratio:3/4;
+}
+/* Other 3 cards: smaller */
+.card.c-bb,.card.c-tb,.card.c-mi{
+  aspect-ratio:4/3;
+}
+@media(max-width:860px){
+  .work-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .card.c-tm{grid-row:auto;aspect-ratio:4/3;}
+}
+@media(max-width:500px){
+  .work-grid{grid-template-columns:1fr;}
+}
+
+
+/* ── Currently Exploring ── */
+#s-now{
+  background:var(--ink);color:#fff;
+  padding:clamp(3rem,6vh,5rem) clamp(1.5rem,5vw,3.5rem);
+  min-height:auto;
+}
+.now-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3px;margin-top:1.6rem;max-width:860px;
+}
+.now-col{
+  background:#2A2620;padding:1.5rem 1.6rem;position:relative;
+}
+.now-col:first-child{border-radius:14px 0 0 14px;}
+.now-col:last-child{border-radius:0 14px 14px 0;}
+.now-col::before{
+  content:"● ●";position:absolute;top:.6rem;left:50%;transform:translateX(-50%);
+  font-size:.4rem;letter-spacing:.3rem;color:rgba(255,255,255,.1);
+}
+.now-col-h{
+  font-size:.58rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,255,255,.28);margin-bottom:.9rem;margin-top:.3rem;
+}
+.now-item{
+  font-size:.85rem;font-weight:600;color:rgba(255,255,255,.62);
+  padding:.38rem 0;border-bottom:1px solid rgba(255,255,255,.06);
+  display:flex;align-items:flex-start;gap:.55rem;line-height:1.45;
+}
+.now-item:last-child{border-bottom:none;}
+.now-item::before{content:"→";flex-shrink:0;color:var(--y);font-size:.72rem;margin-top:.08rem;}
+@media(max-width:600px){.now-grid{grid-template-columns:1fr;}}
+
+
+/* ── Experience ── */
+#s-exp{background:var(--cream);min-height:auto;padding:clamp(3rem,6vh,5rem) clamp(1.5rem,5vw,3.5rem);}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:1000px;}
+.exp-card{border-radius:18px;overflow:hidden;background:#fff;border:2px solid var(--line);box-shadow:0 5px 0 rgba(0,0,0,.1);transition:transform .3s,box-shadow .3s;}
+.exp-card:hover{transform:translateY(-5px);box-shadow:0 10px 0 rgba(0,0,0,.08),0 14px 32px rgba(0,0,0,.08);}
+.exp-card-dark{background:var(--ink);border-color:transparent;}
+.exp-card-img img{width:100%;height:auto;display:block;}
+.exp-body{padding:1.3rem 1.5rem 1.6rem;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.8rem;}
+.exp-tag{font-size:.57rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:.18rem .55rem;border-radius:99px;background:var(--paper);border:1.5px solid var(--line);color:var(--mid);}
+.exp-tag-d{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5);}
+.exp-title{font-size:1.1rem;font-weight:900;color:var(--ink);margin-bottom:.18rem;}
+.exp-title-d{color:#fff;}
+.exp-org{font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin-bottom:.65rem;}
+.exp-org-d{color:rgba(255,255,255,.35);}
+.exp-desc{font-size:.82rem;font-weight:400;line-height:1.75;color:var(--mid);}
+.exp-desc-d{color:rgba(255,255,255,.48);}
+.stud-row{display:flex;gap:6px;margin-top:1.4rem;opacity:.1;}
+.stud-dot{width:13px;height:13px;border-radius:50%;background:#fff;box-shadow:inset 0 -2px 0 rgba(0,0,0,.2);}
+@media(max-width:700px){.exp-grid{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -586,7 +655,9 @@ section{
   </div>
   <ul class="nav-links">
     <li><a href="#s-hero">Home</a></li>
+    <li><a href="#s-now">Now</a></li>
     <li><a href="#s-work">Work</a></li>
+    <li><a href="#s-exp">Life</a></li>
     <li><a href="#s-about">About</a></li>
     <li><a href="#s-contact">Contact</a></li>
   </ul>
@@ -599,9 +670,7 @@ section{
       <!-- ✏️ ADD YOUR PHOTO: delete the div below, add:
            <img src="photo.jpg" style="width:100%;height:100%;object-fit:cover;display:block;">
       -->
-      <div class="photo-placeholder">
-        <img src="bio.JPG" style="width:100%;height:150%;object-fit:cover;display:block;">
-      </div>
+      <img src="bio.JPG" style="width:100%;height:100%;object-fit:cover;display:block;">
     </div>
     <div class="stud-deco sd-1"></div>
     <div class="stud-deco sd-2"></div>
@@ -609,16 +678,14 @@ section{
   </div>
 
   <div class="hero-text">
-    <p class="hero-eyebrow">Designer &amp; Maker · UIUC</p>
+    <p class="hero-eyebrow">Aspiring UX Designer · UIUC Freshman</p>
     <h1 class="hero-name">
       Chase Xinru<br>
       Rummery.
-      <span class="accent">My Portfolio</span>
+      <span class="accent">Exploring interaction design, physical computing &amp; visual storytelling</span>
     </h1>
     <p class="hero-body">
-      A student at the University of Illinois —
-      building experiences at the intersection of art,
-      interaction design, and technology.
+      I design at the intersection of art, technology, and human behaviour — from physical computing prototypes to interactive games. Currently studying Studio Art at UIUC, transferring into iSchool.
     </p>
     <div class="hero-chips">
       <span class="lego-chip">UX / UI</span>
@@ -627,7 +694,29 @@ section{
       <span class="lego-chip">Physical Computing</span>
       <span class="lego-chip">Front-End</span>
     </div>
-    <a href="#s-work" class="hero-cta">View my work →</a>
+    <a href="#s-work" class="hero-cta">See my work →</a>
+  </div>
+</section>
+
+<!-- ══ NOW ══ -->
+<section id="s-now" class="dark-section">
+  <div class="s-label" style="color:#fff;">01 · Now</div>
+  <h2 class="s-heading">Currently exploring.</h2>
+  <div class="now-grid">
+    <div class="now-col">
+      <p class="now-col-h">In school</p>
+      <div class="now-item">HCI &amp; design coursework at UIUC</div>
+      <div class="now-item">Studio Art → Information Sciences transfer</div>
+      <div class="now-item">LEGO Club — space design, South Quad</div>
+      <div class="now-item">Hotpot Women's Basketball — player, manager &amp; poster design</div>
+    </div>
+    <div class="now-col">
+      <p class="now-col-h">Building</p>
+      <div class="now-item">This portfolio — interaction &amp; web design</div>
+      <div class="now-item">Physical computing experiments</div>
+      <div class="now-item">3D &amp; motion design explorations</div>
+      <div class="now-item">Graphic design for campus organisations</div>
+    </div>
   </div>
 </section>
 
@@ -675,6 +764,20 @@ section{
     <p class="work-sub">Click a card to explore</p>
   </div>
   <div class="work-grid">
+<div class="card c-tm" onclick="openD('dr-tm')">
+  <div class="card-bg">
+    <div class="card-deco tm-grid"></div>
+    <div class="card-deco tm-arc"></div>
+    <div class="card-deco tm-dot"></div>
+  </div>
+      <div class="card-arrow">↗</div>
+      <div class="card-info">
+        <p class="card-num">02</p>
+        <h3 class="card-title">Tea Mate</h3>
+        <p class="card-sub">Smart Tea Table · Arduino + TouchDesigner</p>
+        <div class="card-chips"><span class="card-chip">Physical Computing</span><span class="card-chip">Arduino</span></div>
+      </div>
+    </div>
 
 <div class="card c-bb" onclick="openD('dr-bb')">
   <div class="card-bg">
@@ -691,26 +794,13 @@ section{
       </div>
     </div>
 
-    <div class="card c-tm" onclick="openD('dr-tm')">
-      <div class="card-bg">
-        <!-- ✏️ COVER tm: add cover image here -->
-
-      </div>
-      
-      <div class="card-arrow">↗</div>
-      <div class="card-info">
-        <p class="card-num">02</p>
-        <h3 class="card-title">Tea Mate</h3>
-        <p class="card-sub">Smart Tea Table · Arduino + TouchDesigner</p>
-        <div class="card-chips"><span class="card-chip">Physical Computing</span><span class="card-chip">Arduino</span></div>
-      </div>
-    </div>
-
-    <div class="card c-tb" onclick="openD('dr-tb')">
-      <div class="card-bg">
-        <!-- ✏️ COVER tb -->
-
-      </div>
+<div class="card c-tb" onclick="openD('dr-tb')">
+  <div class="card-bg">
+    <div class="card-deco tb-dots"></div>
+    <div class="card-deco tb-rect"></div>
+    <div class="card-deco tb-rect2"></div>
+    <div class="card-deco tb-dot"></div>
+  </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">03</p>
@@ -720,17 +810,45 @@ section{
       </div>
     </div>
 
-    <div class="card c-mi" onclick="openD('dr-mi')">
-      <div class="card-bg">
-        <!-- ✏️ COVER mi -->
-
-      </div>
+<div class="card c-mi" onclick="openD('dr-mi')">
+  <div class="card-bg">
+    <div class="card-deco mi-wave"></div>
+    <div class="card-deco mi-ring"></div>
+    <div class="card-deco mi-ring2"></div>
+    <div class="card-deco mi-dot"></div>
+  </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">04</p>
         <h3 class="card-title">Musical Island</h3>
         <p class="card-sub">Concept + Model + Branding</p>
         <div class="card-chips"><span class="card-chip">Concept</span><span class="card-chip">Model Making</span></div>
+      </div>
+    </div>
+</div>
+</section>
+
+<!-- ══ EXPERIENCE ══ -->
+<section id="s-exp" class="cream-section">
+  <div class="s-label" style="color:var(--mid);">05 · Campus Life</div>
+  <h2 class="work-heading" style="font-family:var(--serif);font-style:italic;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;letter-spacing:-.02em;margin-bottom:2rem;">Beyond class.</h2>
+  <div class="exp-grid">
+    <div class="exp-card">
+      <div class="exp-card-img"><img src="hotpot1.jpg" alt="Hotpot Basketball poster"></div>
+      <div class="exp-body">
+        <div class="exp-tags"><span class="exp-tag">Graphic Design</span><span class="exp-tag">Sports</span><span class="exp-tag">Team Management</span></div>
+        <h3 class="exp-title">Hotpot Women's Basketball</h3>
+        <p class="exp-org">UIUC Chinese Women's Basketball · 2024–2025</p>
+        <p class="exp-desc">Player and team manager for UIUC's Chinese Women's Basketball team. Designed the "Fire It Up" recruitment campaign — posters, social graphics, and branding — to grow the team's identity and attract new players.</p>
+      </div>
+    </div>
+    <div class="exp-card exp-card-dark">
+      <div class="exp-body" style="padding-top:1.8rem;">
+        <div class="exp-tags"><span class="exp-tag exp-tag-d">Space Design</span><span class="exp-tag exp-tag-d">Collaboration</span><span class="exp-tag exp-tag-d">Creative Making</span></div>
+        <h3 class="exp-title exp-title-d">LEGO Club</h3>
+        <p class="exp-org exp-org-d">UIUC · South Quad Design · 2024–2025</p>
+        <p class="exp-desc exp-desc-d">Collaborated on a LEGO build reimagining South Quad's spatial layout — thinking through scale, circulation, and visual storytelling through an unexpected medium. A reminder that design thinking applies everywhere.</p>
+        <div class="stud-row"><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div><div class="stud-dot"></div></div>
       </div>
     </div>
   </div>
@@ -766,11 +884,7 @@ section{
   <div>
     <h2 class="contact-heading">Let's<br><span>talk.</span></h2>
     <div class="clinks">
-      <a href="mailto:cxr2@illinois.edu" class="crow">
-        <span class="crow-label">Email</span>
-        <span class="crow-val">cxr2@illinois.edu</span>
-        <span class="crow-arr">↗</span>
-      </a>
+      <a href="mailto:cxr2@illinois.edu" class="crow"><span class="crow-label">Email</span><span class="crow-val">cxr2@illinois.edu</span><span class="crow-arr">↗</span></a>
       <a href="https://www.linkedin.com/in/chase-rummery" target="_blank" class="crow">
         <span class="crow-label">LinkedIn</span>
         <span class="crow-val">linkedin.com/in/chase-rummery</span>
@@ -812,7 +926,7 @@ section{
         <img src="baby3.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="baby4.png">
+        <img src="baby4.png">
       </div>
     </div>
     <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn">Watch Demo ↗</a>
@@ -831,16 +945,16 @@ section{
     <div class="drawer-tags"><span class="drawer-tag">Arduino</span><span class="drawer-tag">TouchDesigner</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Physical Prototype</span><span class="drawer-tag">HCI</span></div>
     <div class="drawer-photos">
       <div class="drawer-photo">
-        <img class="drawer-photo" src="teatable1.png">
+        <img src="teatable1.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="teatable2.png">
+        <img src="teatable2.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="teatable3.png">
+        <img src="teatable3.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="teatable4.png">
+        <img src="teatable4.png">
       </div>
     </div>
     <a href="https://www.youtube.com/watch?v=ONm0FoyzQ4w" target="_blank" class="drawer-btn">Watch Demo ↗</a>
@@ -859,16 +973,16 @@ section{
     <div class="drawer-tags"><span class="drawer-tag">NFC Interaction</span><span class="drawer-tag">AR · Reality Composer</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Team Lead</span></div>
     <div class="drawer-photos">
       <div class="drawer-photo">
-        <img class="drawer-photo" src="brother1.png">
+        <img src="brother1.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="brother2.png">
+        <img src="brother2.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="brother3.png">
+        <img src="brother3.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="brother4.png">
+        <img src="brother4.png">
       </div>
     </div>
     <a href="https://youtu.be/aYRxI1NvMRog" target="_blank" class="drawer-btn">Watch Demo ↗</a>
@@ -887,16 +1001,16 @@ section{
     <div class="drawer-tags"><span class="drawer-tag">Concept Design</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Physical Model</span><span class="drawer-tag">Typography Design</span><span class="drawer-tag">UX Research</span></div>
     <div class="drawer-photos">
       <div class="drawer-photo">
-        <img class="drawer-photo" src="island1.png">
+        <img src="island1.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="island2.png">
+        <img src="island2.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="island3.png">
+        <img src="island3.png">
       </div>
       <div class="drawer-photo">
-        <img class="drawer-photo" src="island4.png">
+        <img src="island4.png">
       </div>
     </div>
   </div>
@@ -910,7 +1024,7 @@ document.addEventListener('mousemove',e=>{
   cx=e.clientX;cy=e.clientY;
   cur.style.left=cx+'px';cur.style.top=cy+'px';
   const el=document.elementFromPoint(cx,cy);
-  const dark=el?.closest('#s-skills,#s-about,#s-contact,.c-bb,.c-tm,.c-tb,.c-mi,.drawer');
+  const dark=el?.closest('#s-now,#s-skills,#s-about,#s-contact,.c-bb,.c-tm,.c-tb,.c-mi,.drawer,.exp-card-dark');
   cur.classList.toggle('drk',!!dark);
 });
 document.querySelectorAll('a,button,.card,.fact-tile,.crow,.lego-chip').forEach(el=>{
@@ -942,11 +1056,13 @@ document.addEventListener('keydown',e=>{
    No labels.
 ══════════════════════════════════════ */
 const COLS=[
-  ['#F5C542','#C89510','#A07800'],  // yellow
-  ['#E8412A','#B82010','#900808'],  // red
-  ['#3C7DD4','#1A5CB0','#0A3C8C'],  // blue
-  ['#48C048','#289628','#107210'],  // green
-  ['#9B59D4','#7030B0','#501890'],  // purple
+  ['#F5C542','#C89510','#A07800'],
+  ['#E8412A','#B82010','#900808'],
+  ['#3C7DD4','#1A5CB0','#0A3C8C'],
+  ['#48C048','#289628','#107210'],
+  ['#E8872A','#C05808','#983800'],
+  ['#9B59D4','#7030B0','#501890'],
+  ['#E84CA0','#C02878','#901858'],
 ];
 const BW=96, BH=84;
 
@@ -1011,7 +1127,7 @@ const brickEls=COLS.map(([top,front,side],i)=>{
   return el;
 });
 
-const SECS=['s-hero','s-skills','s-work','s-about','s-contact'];
+const SECS=['s-hero','s-now','s-skills','s-work','s-exp','s-about','s-contact'];
 function updateBricks(){
   let n=0;
   SECS.forEach(id=>{
