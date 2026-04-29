@@ -639,6 +639,67 @@ section{
 .exp-card-clickable:hover{transform:translateY(-5px);box-shadow:0 10px 0 rgba(0,0,0,.08),0 14px 32px rgba(0,0,0,.08);}
 .exp-card-dark{display:flex;flex-direction:column;}
 
+/* ── Drawer photos: single column, full width, clickable lightbox ── */
+.drawer-photos {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin-bottom: 2.5rem;
+}
+.drawer-photo {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 2px dashed rgba(28,24,16,.1);
+  cursor: zoom-in;
+}
+.drawer-photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  transition: transform .3s ease;
+}
+.drawer-photo img:hover {
+  transform: scale(1.01);
+}
+
+/* ── Lightbox ── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,.92);
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+#lightbox.open {
+  display: flex;
+}
+#lightbox img {
+  max-width: 92vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+}
+#lightbox-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.4rem;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  opacity: .7;
+  transition: opacity .2s;
+}
+#lightbox-close:hover { opacity: 1; }
+
 </style>
 </head>
 <body>
@@ -1173,6 +1234,19 @@ function updateBricks(){
 window.addEventListener('scroll',updateBricks,{passive:true});
 window.addEventListener('resize',updateBricks);
 setTimeout(updateBricks,200);
+document.querySelectorAll('.drawer-photo-zoom img').forEach(img=>{
+  img.addEventListener('click',e=>{
+    e.stopPropagation();
+    document.getElementById('lightbox-img').src=img.src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow='hidden';
+  });
+});
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
 
 <!-- ══ DRAWER: Campus Map ══ -->
@@ -1189,8 +1263,12 @@ setTimeout(updateBricks,200);
     <div class="drawer-process"><p class="dp-label">What I did</p><p class="dp-text">Built interactive wireframes and conducted annotated walkthroughs to evaluate information hierarchy and navigation patterns. Developed a user persona in Figma, mapped pain points and motivations, and iterated on interface layouts based on peer usability feedback.</p></div>
     <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Key outcome</p><p class="dp-text">Presented a final concept addressing WCAG accessibility needs, schedule integration, and real-time space availability — balancing four distinct user modes (accessibility, dining, occupancy, sports) within a single coherent navigation system.</p></div>
     <div class="drawer-photos">
-      <div class="drawer-photo"><img src="map.png"></div>
-      <div class="drawer-photo"><img src="map1.png"></div>
+      <div class="drawer-photo">User Flow:<img src="map.png"></div>
+      <div class="drawer-photo drawer-photo-lg">Story board:<img src="map1.png"></div>
+      <div class="drawer-photo">Login Page:<img src="map2.png"></div>
+      <div class="drawer-photo"><img src="map3.png"></div>
+      <div class="drawer-photo"><img src="map4.png"></div>
+
     </div>
   </div>
 </div>
@@ -1230,8 +1308,8 @@ setTimeout(updateBricks,200);
     <div class="drawer-process"><p class="dp-label">What I designed</p><p class="dp-text">Created paper wireframes and interaction flows for login and inbox screens. Annotated key UI decisions — auto-labelled tags, contextual sidebar generation, chunked email categories — grounding each choice in principles of visual hierarchy, chunking, and alignment.</p></div>
     <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Interface analysis</p><p class="dp-text">Analysed five real-world interfaces (Lookback, Best Buy, eBay, StockX, Instagram) through visual remix exercises — extracting patterns around information density, progressive disclosure, and CTA placement — then applied those findings directly to the email organiser design.</p></div>
     <div class="drawer-photos">
-      <div class="drawer-photo"><img src="email.png"></div>
-      <div class="drawer-photo"><img src="email1.png"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="email.png"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="email1.png"></div>
     </div>
   </div>
 </div>
@@ -1315,6 +1393,24 @@ setTimeout(updateBricks,200);
 .dp-text{font-size:.88rem;font-weight:400;line-height:1.75;color:var(--mid);}
 .drawer-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:.72rem 1.75rem;border-radius:10px;background:var(--ink);color:var(--cream);box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s;}
 .drawer-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35);}
+
+.drawer-photos{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2.5rem;}
+.drawer-photo{width:100%;border-radius:14px;overflow:hidden;background:var(--paper);border:none;}
+.drawer-photo img{width:100%;height:auto;display:block;border-radius:12px;}
+.drawer-photo-zoom{cursor:zoom-in;}
+.drawer-photo-zoom img{transition:transform .25s ease;}
+.drawer-photo-zoom img:hover{transform:scale(1.01);}
+#lightbox{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out;}
+#lightbox.open{display:flex;}
+#lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;}
+#lightbox-close{position:absolute;top:1.2rem;right:1.4rem;color:#fff;font-size:1.6rem;cursor:pointer;opacity:.7;}
+#lightbox-close:hover{opacity:1;}
+.drawer-photo-sm{width:fit-content;}
+.drawer-photo-sm img{max-height:300px;width:auto;display:block;}
+.drawer-photo-md{width:fit-content;}
+.drawer-photo-md img{max-height:480px;width:auto;display:block;}
+.drawer-photo-lg{width:fit-content;}
+.drawer-photo-lg img{max-height:680px;width:auto;display:block;}
 </style>
 <!-- ══ DRAWER: Hotpot ══ -->
 <div class="drawer dr-hotpot" id="dr-hotpot">
@@ -1333,22 +1429,27 @@ setTimeout(updateBricks,200);
     <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Recruitment Poster</p>
     <p class="drawer-desc" style="margin-bottom:1.25rem;">The "Fire It Up" recruitment poster — bold typography, the Hotpot flame motif, and action photography combined into a high-impact campaign.</p>
     <div class="drawer-photos">
-      <div class="drawer-photo"><img src="hotpot1.jpg"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="hotpot1.jpg"></div>
     </div>
     <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Jersey Design</p>
     <p class="drawer-desc" style="margin-bottom:1.25rem;">The official Hotpot team jersey — extending the "Fire It Up" visual language into a wearable. Designed, shipped, and worn in real games.</p>
     <div class="drawer-photos">
-      <div class="drawer-photo"><img src="jersey.JPG"></div>
-      <div class="drawer-photo"><img src="jersey1.JPG"></div>
-      <div class="drawer-photo"><img src="jersey2.JPG"></div>
-      <div class="drawer-photo"><img src="jersey3.JPG"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="jersey.JPG"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="jersey1.JPG"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="jersey2.JPG"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="jersey3.JPG"></div>
     </div>
     <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Logo Design</p>
     <p class="drawer-desc" style="margin-bottom:1.25rem;">Team logo design — merging Chinese hotpot culture with basketball iconography into a shield crest identity system.</p>
     <div class="drawer-photos">
-      <div class="drawer-photo"><img src="logo.JPG"></div>
+      <div class="drawer-photo drawer-photo-lg"><img src="logo.JPG"></div>
     </div>
   </div>
+</div>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
 </div>
 </body>
 </html>
