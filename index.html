@@ -290,10 +290,9 @@ section{
   max-width:820px;
 }
 .card{aspect-ratio:4/3;}
-.card.c-art{grid-column:span 2;aspect-ratio:21/9;}
+.card.c-art{aspect-ratio:4/3;}
 @media(max-width:600px){
   .work-grid{grid-template-columns:1fr;}
-  .card.c-art{grid-column:span 1;aspect-ratio:4/3;}
 }
 /* CARD */
 .card{
@@ -441,6 +440,7 @@ section{
 .drawer-photos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
 .drawer-photo{border-radius:14px;background:var(--paper);overflow:hidden;border:2px dashed rgba(28,24,16,.1);}
 .drawer-photo img{width:100%;height:auto;display:block;border-radius:10px;}
+.drawer-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:.72rem 1.75rem;border-radius:10px;background:var(--ink);color:var(--cream);box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s;text-decoration:none;}
 .drawer-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35);}
 /* Accent per drawer */
 .dr-bb .drawer-title{color:#D02040;}
@@ -500,6 +500,7 @@ section{
 .pw-slot:hover{background:#342E28;}
 .pw-slot:first-child{grid-row:span 2;}
 .pw-slot img{width:100%;height:auto;display:block;border-radius:10px;}
+.pw-slot:has(img){min-height:unset!important;padding:0!important;background:transparent!important;border-color:transparent!important;}
 /* ✏️ PHOTO WALL: replace each pw-slot content with:
    <img src="life-photo.jpg">
 */
@@ -579,9 +580,9 @@ section{
   radial-gradient(1.5px 1.5px at 40% 70%,rgba(255,255,255,.45),transparent),
   radial-gradient(2px 2px at 85% 25%,rgba(160,80,220,.5),transparent),
   radial-gradient(1.5px 1.5px at 10% 80%,rgba(255,255,255,.4),transparent);}
-.c-ol{background:#1c1030;}
-.c-ol .card-bg{background:radial-gradient(ellipse 80% 80% at 40% 50%,rgba(130,80,200,.25),transparent),radial-gradient(ellipse 60% 60% at 80% 20%,rgba(240,180,60,.12),transparent),#1c1030;}
-.c-ol .card-chip{background:rgba(130,80,200,.2);color:rgba(190,150,255,.8);}
+.c-ol{background:#2d1f4e;}
+.c-ol .card-bg{background:radial-gradient(ellipse 90% 90% at 50% 50%,rgba(180,140,255,.15),transparent),#2d1f4e;}
+.c-ol .card-chip{background:rgba(200,160,255,.18);color:rgba(220,200,255,.9);}
 .ol-ring{width:160px;height:160px;border-radius:50%;border:1px solid rgba(130,80,200,.2);top:-30px;right:-30px;}
 .ol-ring2{width:100px;height:100px;border-radius:50%;border:1px solid rgba(240,180,60,.15);bottom:20px;left:-20px;}
 .ol-dot{width:7px;height:7px;border-radius:50%;background:#9B59D4;top:24px;left:22px;box-shadow:0 0 14px rgba(130,80,200,.7);}
@@ -699,6 +700,11 @@ section{
   transition: opacity .2s;
 }
 #lightbox-close:hover { opacity: 1; }
+
+
+.work-section-label{font-size:.6rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:0 0 .9rem;display:flex;align-items:center;gap:.75rem;}
+.work-section-label::after{content:'';flex:1;height:1px;background:var(--line);}
+.work-section-label.label-hs{margin-top:2.5rem;}
 
 </style>
 </head>
@@ -823,21 +829,84 @@ section{
     <h2 class="work-heading">Selected work.</h2>
     <p class="work-sub">Click a card to explore</p>
   </div>
-  <div class="work-grid">
+
+  <p class="work-section-label">UIUC · Bachelor's</p>
+  <div class="work-grid" style="margin-bottom:0;">
 
     <div class="card c-map" onclick="openD('dr-map')">
-      <div class="card-bg"><div class="card-deco map-grid"></div><div class="card-deco map-pin"></div></div>
+      <div class="card-bg">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 24px,rgba(255,255,255,.04) 24px,rgba(255,255,255,.04) 25px),repeating-linear-gradient(90deg,transparent,transparent 24px,rgba(255,255,255,.04) 24px,rgba(255,255,255,.04) 25px);"></div>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.18;" viewBox="0 0 200 150" preserveAspectRatio="none">
+          <path d="M0 75 L200 75" stroke="white" stroke-width="3"/>
+          <path d="M100 0 L100 150" stroke="white" stroke-width="3"/>
+          <path d="M0 38 L200 38" stroke="white" stroke-width="1.5"/>
+          <path d="M0 112 L200 112" stroke="white" stroke-width="1.5"/>
+          <path d="M50 0 L50 150" stroke="white" stroke-width="1.5"/>
+          <path d="M150 0 L150 150" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.5;" viewBox="0 0 200 150" preserveAspectRatio="none">
+          <path d="M30 112 L50 112 L50 75 L100 75 L100 38 L150 38" stroke="#E86C00" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+        </svg>
+        <div style="position:absolute;top:calc(75% - 5px);left:calc(25% - 5px);width:10px;height:10px;border-radius:50%;background:#E86C00;box-shadow:0 0 12px rgba(232,108,0,.8);z-index:2;"></div>
+        <div style="position:absolute;top:calc(75% - 10px);left:calc(25% - 10px);width:20px;height:20px;border-radius:50%;border:2px solid rgba(232,108,0,.4);z-index:1;pointer-events:none;"></div>
+        <div style="position:absolute;top:calc(25% - 4px);left:calc(75% - 4px);width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.7);box-shadow:0 0 8px rgba(255,255,255,.4);z-index:2;"></div>
+        <div style="position:absolute;top:calc(25% - 8px);left:calc(75% - 8px);width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);z-index:1;pointer-events:none;"></div>
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#E86C00 60%,transparent);opacity:.7;"></div>
+      </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">01</p>
-        <h3 class="card-title">Campus Map App</h3>
+        <h3 class="card-title">I Map</h3>
         <p class="card-sub">Multi-Mode UX Design · INFO 333 · UIUC</p>
         <div class="card-chips"><span class="card-chip">UX Research</span><span class="card-chip">Figma</span><span class="card-chip">Accessibility</span></div>
       </div>
     </div>
 
     <div class="card c-ol" onclick="openD('dr-ol')">
-      <div class="card-bg"><div class="card-deco ol-ring"></div><div class="card-deco ol-ring2"></div><div class="card-deco ol-dot"></div></div>
+      <div class="card-bg">
+        <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.22;" viewBox="0 0 200 150" preserveAspectRatio="none">
+          <rect x="18" y="12" width="164" height="126" fill="none" stroke="rgba(220,200,255,.6)" stroke-width="1.5"/>
+          <rect x="18" y="12" width="22" height="22" fill="rgba(220,200,255,.1)" stroke="rgba(220,200,255,.5)" stroke-width="1"/>
+          <rect x="160" y="12" width="22" height="22" fill="rgba(220,200,255,.1)" stroke="rgba(220,200,255,.5)" stroke-width="1"/>
+          <rect x="18" y="116" width="22" height="22" fill="rgba(220,200,255,.1)" stroke="rgba(220,200,255,.5)" stroke-width="1"/>
+          <rect x="160" y="116" width="22" height="22" fill="rgba(220,200,255,.1)" stroke="rgba(220,200,255,.5)" stroke-width="1"/>
+          <rect x="40" y="12" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="58" y="12" width="18" height="22" fill="rgba(255,200,100,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="76" y="12" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="94" y="12" width="18" height="22" fill="rgba(100,200,255,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="112" y="12" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="130" y="12" width="18" height="22" fill="rgba(255,120,120,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="148" y="12" width="12" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="40" y="116" width="18" height="22" fill="rgba(100,255,160,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="58" y="116" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="76" y="116" width="18" height="22" fill="rgba(255,200,100,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="94" y="116" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="112" y="116" width="18" height="22" fill="rgba(100,200,255,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="130" y="116" width="18" height="22" fill="none" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="148" y="116" width="12" height="22" fill="rgba(255,120,120,.08)" stroke="rgba(220,200,255,.35)" stroke-width=".8"/>
+          <rect x="18" y="34" width="22" height="16" fill="none" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="18" y="50" width="22" height="16" fill="rgba(255,200,100,.07)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="18" y="66" width="22" height="16" fill="none" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="18" y="82" width="22" height="16" fill="rgba(100,200,255,.07)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="18" y="98" width="22" height="16" fill="none" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="160" y="34" width="22" height="16" fill="rgba(100,255,160,.07)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="160" y="50" width="22" height="16" fill="none" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="160" y="66" width="22" height="16" fill="rgba(255,120,120,.07)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="160" y="82" width="22" height="16" fill="none" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <rect x="160" y="98" width="22" height="16" fill="rgba(255,200,100,.07)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <text x="100" y="78" text-anchor="middle" font-size="9" fill="rgba(220,200,255,.35)" font-family="sans-serif" font-weight="bold">START</text>
+          <text x="100" y="92" text-anchor="middle" font-size="7" fill="rgba(220,200,255,.25)" font-family="sans-serif">→</text>
+          <rect x="84" y="54" width="14" height="14" rx="2" fill="rgba(255,255,255,.08)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <circle cx="88" cy="58" r="1.2" fill="rgba(220,200,255,.5)"/>
+          <circle cx="95" cy="65" r="1.2" fill="rgba(220,200,255,.5)"/>
+          <rect x="102" y="54" width="14" height="14" rx="2" fill="rgba(255,255,255,.08)" stroke="rgba(220,200,255,.3)" stroke-width=".8"/>
+          <circle cx="109" cy="61" r="1.2" fill="rgba(220,200,255,.5)"/>
+        </svg>
+        <div style="position:absolute;top:14px;left:20px;font-size:.38rem;font-weight:800;letter-spacing:.04em;color:rgba(220,200,255,.5);text-transform:uppercase;line-height:1.2;">GO<br>→</div>
+        <div style="position:absolute;top:14px;right:20px;font-size:.38rem;font-weight:800;letter-spacing:.04em;color:rgba(255,120,120,.55);text-transform:uppercase;line-height:1.2;">JAIL</div>
+        <div style="position:absolute;bottom:14px;left:20px;font-size:.38rem;font-weight:800;letter-spacing:.04em;color:rgba(100,255,160,.45);text-transform:uppercase;line-height:1.2;">FREE<br>PARK</div>
+        <div style="position:absolute;bottom:14px;right:20px;font-size:.38rem;font-weight:800;letter-spacing:.04em;color:rgba(255,200,100,.5);text-transform:uppercase;line-height:1.2;">GO TO<br>JAIL</div>
+      </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">02</p>
@@ -848,27 +917,38 @@ section{
     </div>
 
     <div class="card c-email" onclick="openD('dr-email')">
-      <div class="card-bg"><div class="card-deco email-lines"></div><div class="card-deco email-dot"></div></div>
+      <div class="card-bg">
+        <svg style="position:absolute;top:14%;left:50%;transform:translateX(-50%);width:68px;height:50px;opacity:.15;" viewBox="0 0 80 60" fill="none">
+          <rect x="2" y="6" width="76" height="50" rx="5" stroke="white" stroke-width="2.5"/>
+          <path d="M2 10 L40 34 L78 10" stroke="white" stroke-width="2.5"/>
+        </svg>
+        <div style="position:absolute;top:16%;left:8%;font-size:.44rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:rgba(0,220,155,.8);background:rgba(0,220,155,.12);padding:.13rem .4rem;border-radius:99px;border:1px solid rgba(0,220,155,.25);">Assignment</div>
+        <div style="position:absolute;top:32%;right:8%;font-size:.44rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:rgba(100,200,255,.7);background:rgba(100,200,255,.1);padding:.13rem .4rem;border-radius:99px;border:1px solid rgba(100,200,255,.2);">Event</div>
+        <div style="position:absolute;top:48%;left:12%;font-size:.44rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,210,80,.65);background:rgba(255,210,80,.1);padding:.13rem .4rem;border-radius:99px;border:1px solid rgba(255,210,80,.2);">Package</div>
+      </div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
         <p class="card-num">03</p>
-        <h3 class="card-title">AI Email Organiser</h3>
+        <h3 class="card-title">MailMind</h3>
         <p class="card-sub">Mobile App Concept · IS 226 · UIUC</p>
         <div class="card-chips"><span class="card-chip">Interaction Design</span><span class="card-chip">Wireframing</span><span class="card-chip">UI</span></div>
       </div>
     </div>
 
+  </div>
+
+  <p class="work-section-label label-hs">High School · Art Portfolio</p>
+  <div class="work-grid">
     <div class="card c-art" onclick="openD('dr-art')">
       <div class="card-bg"><div class="card-deco art-stars"></div></div>
       <div class="card-arrow">↗</div>
       <div class="card-info">
-        <p class="card-num">04 · Archive</p>
+        <p class="card-num">Archive · 2020–2024</p>
         <h3 class="card-title">Art Portfolio</h3>
-        <p class="card-sub">High School + Tea Mate · 2020–2024</p>
+        <p class="card-sub">Tea Mate · Baby Ballon · Two Brothers · Musical Island</p>
         <div class="card-chips"><span class="card-chip">Procreate</span><span class="card-chip">Arduino</span><span class="card-chip">NFC + AR</span><span class="card-chip">Blender</span></div>
       </div>
     </div>
-
   </div>
 </section>
 
@@ -996,9 +1076,163 @@ section{
 </section>
 
 <!-- ══ PROJECT DRAWERS ══ -->
+
+<!-- ══ DRAWER: I Map ══ -->
+<div class="drawer dr-map" id="dr-map">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">INFO 333 · UX Design · Spring 2025</span>
+    <button class="drawer-close" onclick="closeD('dr-map')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Team Project · Figma · Accessibility · UIUC</p>
+    <h2 class="drawer-title" style="color:#E86C00;">I Map.</h2>
+    <p class="drawer-desc">A multi-function campus map concept integrating accessibility routing, real-time space occupancy, dining options, and sports schedules into one unified platform — reducing the friction of navigating UIUC's large campus.</p>
+    <div class="drawer-tags"><span class="drawer-tag">UX Design</span><span class="drawer-tag">Figma</span><span class="drawer-tag">Wireframing</span><span class="drawer-tag">Accessibility (WCAG)</span><span class="drawer-tag">User Persona</span><span class="drawer-tag">INFO 333</span></div>
+    <div class="drawer-process"><p class="dp-label">What I did</p><p class="dp-text">Built interactive wireframes and conducted annotated walkthroughs to evaluate information hierarchy and navigation patterns. Developed a user persona in Figma, mapped pain points and motivations, and iterated on interface layouts based on peer usability feedback.</p></div>
+    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Key outcome</p><p class="dp-text">Presented a final concept addressing WCAG accessibility needs, schedule integration, and real-time space availability — balancing four distinct user modes within a single coherent navigation system.</p></div>
+    <div class="drawer-photos">
+      <div class="drawer-photo drawer-photo-zoom">User Flow:<img src="map.png"></div>
+      <div class="drawer-photo drawer-photo-lg drawer-photo-zoom">Story board:<img src="map1.png"></div>
+      <div class="drawer-photo drawer-photo-zoom">Login Page:<img src="map2.png"></div>
+      <div class="drawer-photo drawer-photo-zoom"><img src="map3.png"></div>
+      <div class="drawer-photo drawer-photo-zoom"><img src="map4.png"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER: The Other Side of Life ══ -->
+<div class="drawer dr-ol" id="dr-ol">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">IS 101 · Game Studies &amp; Design · Fall 2024</span>
+    <button class="drawer-close" onclick="closeD('dr-ol')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Co-designed · iSchool Spring Showcase · UIUC</p>
+    <h2 class="drawer-title" style="color:#9B59D4;">The Other Side of Life.</h2>
+    <p class="drawer-desc">A social-awareness board game exploring racial bias and systemic inequality — inspired by The Game of Life, but redesigned so different characters interact with the same events in fundamentally different ways. Players gradually realise the bias baked into the system.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Game Design</span><span class="drawer-tag">Social Awareness</span><span class="drawer-tag">Playtesting</span><span class="drawer-tag">Algorithmic Bias</span><span class="drawer-tag">IS 101</span><span class="drawer-tag">iSchool Showcase</span></div>
+    <div class="drawer-process"><p class="dp-label">Problem I solved</p><p class="dp-text">Identified a core pacing problem — too many blank board squares were causing gameplay to stall. Proposed and tested rule revisions that significantly improved engagement and made the bias mechanics more legible to players.</p></div>
+    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Process &amp; reflection</p><p class="dp-text">Co-designed with a team of 5. Led two rounds of playtesting, documented player confusion, and iterated on card design. Presented at the iSchool Spring Showcase.</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.5rem;">
+      <div style="grid-column:span 2;border-radius:12px;overflow:hidden;"><img src="game.png" style="width:100%;height:auto;display:block;border-radius:12px;"></div>
+      <div style="border-radius:12px;overflow:hidden;"><img src="game1.png" style="width:100%;height:auto;display:block;"></div>
+      <div style="border-radius:12px;overflow:hidden;"><img src="game2.png" style="width:100%;height:auto;display:block;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER: MailMind ══ -->
+<div class="drawer dr-email" id="dr-email">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">IS 226 · Interaction Design · Spring 2025</span>
+    <button class="drawer-close" onclick="closeD('dr-email')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Mobile App Concept · Paper Wireframes · Interface Analysis</p>
+    <h2 class="drawer-title" style="color:#00C88A;">MailMind.</h2>
+    <p class="drawer-desc">A mobile app concept that automatically categorises student emails — assignments, events, packages, alerts — using keyword detection and contextual tagging. Designed to reduce the mental load of inbox management for busy students.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Interaction Design</span><span class="drawer-tag">Mobile UX</span><span class="drawer-tag">Wireframing</span><span class="drawer-tag">Visual Hierarchy</span><span class="drawer-tag">IS 226</span></div>
+    <div class="drawer-process"><p class="dp-label">What I designed</p><p class="dp-text">Created paper wireframes and interaction flows for login and inbox screens. Annotated key UI decisions — auto-labelled tags, contextual sidebar generation, chunked email categories — grounding each choice in principles of visual hierarchy, chunking, and alignment.</p></div>
+    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Interface analysis</p><p class="dp-text">Analysed five real-world interfaces (Lookback, Best Buy, eBay, StockX, Instagram) through visual remix exercises — extracting patterns around information density, progressive disclosure, and CTA placement.</p></div>
+    <div style="display:flex;flex-direction:column;gap:.75rem;align-items:center;margin-bottom:2.5rem;">
+      <div style="width:fit-content;margin:0 auto;border-radius:12px;overflow:hidden;"><img src="email.png" style="max-height:520px;width:auto;display:block;border-radius:12px;"></div>
+      <div style="width:fit-content;margin:0 auto;border-radius:12px;overflow:hidden;"><img src="email1.png" style="max-height:520px;width:auto;display:block;border-radius:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER: Art Portfolio ══ -->
+<div class="drawer dr-art" id="dr-art">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">High School Projects · 2020–2024 · Archive</span>
+    <button class="drawer-close" onclick="closeD('dr-art')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Creative &amp; Interactive Work · Pre-UIUC</p>
+    <h2 class="drawer-title" style="color:#A050DC;">Art Portfolio.</h2>
+    <p class="drawer-desc">Creative and interactive projects from before university — a smart tea table, a mobile game, a physical interactive book, and a musical island concept. These projects formed the foundation of my design thinking and technical curiosity.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Procreate</span><span class="drawer-tag">Blender</span><span class="drawer-tag">NFC + AR</span><span class="drawer-tag">Game Design</span><span class="drawer-tag">Physical Computing</span></div>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Tea Mate — Smart Tea Table</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">A smart tea table guiding users through Chinese tea culture step by step. Arduino sensors track brew weight and time; TouchDesigner plays instruction video via serial port; QR payment integration.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo"><img src="teatable1.png"></div>
+      <div class="drawer-photo"><img src="teatable2.png"></div>
+      <div class="drawer-photo"><img src="teatable3.png"></div>
+      <div class="drawer-photo"><img src="teatable4.png"></div>
+    </div>
+    <a href="https://www.youtube.com/watch?v=ONm0FoyzQ4w" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Baby Ballon — Mobile Game</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">A social-awareness mobile game about "social giant babies." Three distinct endings based on your choices — designed, illustrated in Procreate, and user-tested end to end.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo"><img src="baby1.png"></div>
+      <div class="drawer-photo"><img src="baby2.png"></div>
+      <div class="drawer-photo"><img src="baby3.png"></div>
+      <div class="drawer-photo"><img src="baby4.png"></div>
+    </div>
+    <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Two Brothers' Diary — Interactive Book</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">A physical pop-up book combining NFC audio chips, AR overlays via Reality Composer, and Blender 3D modelling. Led a multidisciplinary team from research to final product.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo drawer-photo-sm drawer-photo-zoom"><img src="brother1.png"></div>
+      <div class="drawer-photo"><img src="brother2.png"></div>
+      <div class="drawer-photo"><img src="brother3.png"></div>
+      <div class="drawer-photo"><img src="brother4.png"></div>
+    </div>
+    <a href="https://youtu.be/aYRxI1NvMRog" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Musical Island — Concept &amp; Model</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">A stress-relief island for people with sleep disorders — island zoning, sleep pod UX, custom musical typeface, and a 2400×1800mm physical foam model.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo"><img src="island1.png"></div>
+      <div class="drawer-photo"><img src="island2.png"></div>
+      <div class="drawer-photo"><img src="island3.png"></div>
+      <div class="drawer-photo"><img src="island4.png"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER: Hotpot ══ -->
+<div class="drawer dr-hotpot" id="dr-hotpot">
+  <div class="drawer-header">
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Hotpot Basketball · Graphic Design · UIUC 2024–2025</span>
+    <button class="drawer-close" onclick="closeD('dr-hotpot')">✕</button>
+  </div>
+  <div class="drawer-inner">
+    <p class="drawer-ey">Branding · Wearable Design · Graphic Design</p>
+    <h2 class="drawer-title" style="color:#E8412A;">Hotpot Women's Basketball.</h2>
+    <p class="drawer-desc">Player and team manager for UIUC's Chinese Women's Basketball team. Responsible for the full visual identity — from recruitment campaigns to the jersey worn on court.</p>
+    <div class="drawer-tags"><span class="drawer-tag">Graphic Design</span><span class="drawer-tag">Wearable Design</span><span class="drawer-tag">Branding</span><span class="drawer-tag">Team Management</span></div>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Recruitment Poster</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">The "Fire It Up" recruitment poster — bold typography, the Hotpot flame motif, and action photography combined into a high-impact campaign.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo drawer-photo-md" style="width:fit-content;margin:0 auto;"><img src="hotpot1.jpg" style="max-height:480px;width:auto;display:block;"></div>
+    </div>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Jersey Design</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">The official Hotpot team jersey — extending the "Fire It Up" visual language into a wearable. Designed, shipped, and worn in real games.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.5rem;">
+      <div style="border-radius:12px;overflow:hidden;"><img src="jersey.JPG" style="width:100%;height:auto;display:block;border-radius:12px;"></div>
+      <div style="border-radius:12px;overflow:hidden;"><img src="jersey1.JPG" style="width:100%;height:auto;display:block;border-radius:12px;"></div>
+      <div style="border-radius:12px;overflow:hidden;"><img src="jersey2.JPG" style="width:100%;height:auto;display:block;border-radius:12px;"></div>
+      <div style="border-radius:12px;overflow:hidden;"><img src="jersey3.JPG" style="width:100%;height:auto;display:block;border-radius:12px;"></div>
+    </div>
+
+    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Logo Design</p>
+    <p class="drawer-desc" style="margin-bottom:1.25rem;">Designed the official team logo — a basketball-in-hotpot shield crest combining Chinese cultural identity (chopsticks, hotpot bowl) with American sports aesthetics. Built to work across jerseys, posters, and social media at any scale.</p>
+    <div class="drawer-photos">
+      <div class="drawer-photo drawer-photo-md" style="width:fit-content;margin:0 auto;"><img src="logo.JPG" style="max-height:480px;width:auto;display:block;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DRAWER: Baby Ballon (standalone) ══ -->
 <div class="drawer dr-bb" id="dr-bb">
   <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Baby Ballon · 01/04</span>
+    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Baby Ballon · Mobile Game Design</span>
     <button class="drawer-close" onclick="closeD('dr-bb')">✕</button>
   </div>
   <div class="drawer-inner">
@@ -1007,108 +1241,21 @@ section{
     <p class="drawer-desc">A social-awareness mobile game raising consciousness about "social giant babies." You play as the parent, facing real daily dilemmas. Three distinct endings based on your choices — designed, illustrated in Procreate, and user-tested end to end.</p>
     <div class="drawer-tags"><span class="drawer-tag">Game UX</span><span class="drawer-tag">Character Design</span><span class="drawer-tag">User Testing</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">3 Endings</span></div>
     <div class="drawer-photos">
-      <!-- ✏️ ADD DETAIL PHOTOS: replace each div content with <img src="..."> -->
-      <div class="drawer-photo">
-        <img src="baby1.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="baby2.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="baby3.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="baby4.png">
-      </div>
+      <div class="drawer-photo"><img src="baby1.png"></div>
+      <div class="drawer-photo"><img src="baby2.png"></div>
+      <div class="drawer-photo"><img src="baby3.png"></div>
+      <div class="drawer-photo"><img src="baby4.png"></div>
     </div>
-    <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn">Watch Demo ↗</a>
+    <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn" style="display:inline-flex;">Watch Demo ↗</a>
   </div>
 </div>
 
-<div class="drawer dr-tm" id="dr-tm">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Tea Mate · 02/04</span>
-    <button class="drawer-close" onclick="closeD('dr-tm')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Physical Computing + UX</p>
-    <h2 class="drawer-title">Tea Mate.</h2>
-    <p class="drawer-desc">A smart tea table guiding users through Chinese tea culture step by step. Arduino sensors track brew weight and time, TouchDesigner plays instruction video via serial port, and QR payment is built in. From concept sketch to working physical prototype.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Arduino</span><span class="drawer-tag">TouchDesigner</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Physical Prototype</span><span class="drawer-tag">HCI</span></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo">
-        <img src="teatable1.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="teatable2.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="teatable3.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="teatable4.png">
-      </div>
-    </div>
-    <a href="https://www.youtube.com/watch?v=ONm0FoyzQ4w" target="_blank" class="drawer-btn">Watch Demo ↗</a>
-  </div>
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <span id="lightbox-close">✕</span>
+  <img id="lightbox-img" src="" alt="">
 </div>
-
-<div class="drawer dr-tb" id="dr-tb">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Two Brothers' Diary · 03/04</span>
-    <button class="drawer-close" onclick="closeD('dr-tb')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Interactive Book Design</p>
-    <h2 class="drawer-title">Two Brothers' Diary.</h2>
-    <p class="drawer-desc">A physical pop-up book combining NFC audio chips, AR overlays via Reality Composer, and Blender 3D modelling. Scan a page — hear audio. Push the slider — characters move. Led a multidisciplinary team from research to final product.</p>
-    <div class="drawer-tags"><span class="drawer-tag">NFC Interaction</span><span class="drawer-tag">AR · Reality Composer</span><span class="drawer-tag">Blender</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Team Lead</span></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo">
-        <img src="brother1.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="brother2.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="brother3.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="brother4.png">
-      </div>
-    </div>
-    <a href="https://youtu.be/aYRxI1NvMRog" target="_blank" class="drawer-btn">Watch Demo ↗</a>
-  </div>
-</div>
-
-<div class="drawer dr-mi" id="dr-mi">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Musical Island · 04/04</span>
-    <button class="drawer-close" onclick="closeD('dr-mi')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Concept + Model + Branding</p>
-    <h2 class="drawer-title">Musical Island.</h2>
-    <p class="drawer-desc">A stress-relief island concept for people with sleep disorders — covering island zoning, sleep pod UX, a custom musical typeface, Procreate illustrations, and a physical foam model at 2400×1800mm. Data-driven research into global sleep disorders informed every decision.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Concept Design</span><span class="drawer-tag">Procreate</span><span class="drawer-tag">Physical Model</span><span class="drawer-tag">Typography Design</span><span class="drawer-tag">UX Research</span></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo">
-        <img src="island1.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="island2.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="island3.png">
-      </div>
-      <div class="drawer-photo">
-        <img src="island4.png">
-      </div>
-    </div>
-  </div>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 /* ── CURSOR ── */
 const cur=document.getElementById('cur');
 let cx=0,cy=0;
@@ -1116,10 +1263,10 @@ document.addEventListener('mousemove',e=>{
   cx=e.clientX;cy=e.clientY;
   cur.style.left=cx+'px';cur.style.top=cy+'px';
   const el=document.elementFromPoint(cx,cy);
-  const dark=el?.closest('#s-now,#s-skills,#s-about,#s-contact,.c-art,.c-ol,.c-map,.c-email,.c-jersey,.drawer,.exp-card-dark');
+  const dark=el?.closest('#s-now,#s-skills,#s-about,#s-contact,.c-art,.c-ol,.c-map,.c-email,.drawer,.exp-card-dark');
   cur.classList.toggle('drk',!!dark);
 });
-document.querySelectorAll('a,button,.card,.fact-tile,.crow,.lego-chip').forEach(el=>{
+document.querySelectorAll('a,button,.card,.fact-tile,.crow,.lego-chip,.exp-card-clickable,.exp-card').forEach(el=>{
   el.addEventListener('mouseenter',()=>cur.classList.add('lnk'));
   el.addEventListener('mouseleave',()=>cur.classList.remove('lnk'));
 });
@@ -1131,22 +1278,47 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 
 /* ── DRAWERS ── */
-function openD(id){document.getElementById(id).classList.add('open');document.body.style.overflow='hidden';}
-function closeD(id){document.getElementById(id).classList.remove('open');document.body.style.overflow='';}
+function openD(id){
+  const el=document.getElementById(id);
+  if(!el){console.warn('Drawer not found:',id);return;}
+  el.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeD(id){
+  const el=document.getElementById(id);
+  if(!el){return;}
+  el.classList.remove('open');
+  document.body.style.overflow='';
+}
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
-    document.querySelectorAll('.drawer.open').forEach(d=>{d.classList.remove('open');document.body.style.overflow='';} );
+    document.querySelectorAll('.drawer.open').forEach(d=>{
+      d.classList.remove('open');
+      document.body.style.overflow='';
+    });
+    const lb=document.getElementById('lightbox');
+    if(lb) lb.classList.remove('open');
   }
 });
 
-/* ══════════════════════════════════════
-   LEGO BRICKS
-   Fixed bottom-right stack.
-   5 bricks, one per section.
-   Scroll DOWN into section → brick drops onto stack (no gap).
-   Scroll BACK UP → brick flies off upward.
-   No labels.
-══════════════════════════════════════ */
+/* ── LIGHTBOX ── */
+document.querySelectorAll('.drawer-photo-zoom img').forEach(img=>{
+  img.addEventListener('click',e=>{
+    e.stopPropagation();
+    const lbImg=document.getElementById('lightbox-img');
+    if(lbImg){lbImg.src=img.src;}
+    const lb=document.getElementById('lightbox');
+    if(lb){lb.classList.add('open');}
+    document.body.style.overflow='hidden';
+  });
+});
+function closeLightbox(){
+  const lb=document.getElementById('lightbox');
+  if(lb){lb.classList.remove('open');}
+  document.body.style.overflow='';
+}
+
+/* ── LEGO BRICKS ── */
 const COLS=[
   ['#F5C542','#C89510','#A07800'],
   ['#E8412A','#B82010','#900808'],
@@ -1156,66 +1328,35 @@ const COLS=[
   ['#9B59D4','#7030B0','#501890'],
   ['#E84CA0','#C02878','#901858'],
 ];
-const BW=96, BH=84;
-
-/* In isometric view, "how much does the next brick
-   rise above the current one?"
-   The visible height of a brick face ≈ BH * 0.35   */
-const RISE = Math.round(BH * 0.35);  // ≈ 29px — tight stack, no gap
-
-const RIGHT_PAD = 24;
-const BASE_BOT  = 28;  // distance from bottom of viewport to brick 0 base
+const BW=80,BH=80,RISE=34,RIGHT_M=28,BOT_BASE=36;
+const legoCanvas=document.getElementById('lego-canvas');
 
 function makeBrick(top,front,side){
-  /* 2×2 isometric brick via pure SVG */
-  const w=BW,h=BH;
-  const cx=w/2,cy=h*0.44;
+  const w=BW,h=BH,cx=w/2,cy=h*0.44;
   const tw=w*0.78,th=h*0.28,fh=h*0.32;
-  // top face
   const T=`${cx},${cy-th} ${cx+tw/2},${cy-th/2} ${cx},${cy} ${cx-tw/2},${cy-th/2}`;
-  // front face
   const F=`${cx-tw/2},${cy-th/2} ${cx},${cy} ${cx},${cy+fh} ${cx-tw/2},${cy-th/2+fh}`;
-  // right face
   const R=`${cx},${cy} ${cx+tw/2},${cy-th/2} ${cx+tw/2},${cy-th/2+fh} ${cx},${cy+fh}`;
-  // studs (2×2)
-  const sr=w*0.072, ssh=h*0.038;
-  const studPositions=[
-    [cx-tw*0.22, cy-th*0.72],
-    [cx+tw*0.22, cy-th*0.72],
-    [cx-tw*0.22, cy-th*0.28],
-    [cx+tw*0.22, cy-th*0.28],
-  ];
-  const studs=studPositions.map(([sx,sy])=>
+  const sr=w*0.072,ssh=h*0.038;
+  const sps=[[cx-tw*0.22,cy-th*0.72],[cx+tw*0.22,cy-th*0.72],[cx-tw*0.22,cy-th*0.28],[cx+tw*0.22,cy-th*0.28]];
+  const studs=sps.map(([sx,sy])=>
     `<ellipse cx="${sx}" cy="${sy-ssh}" rx="${sr}" ry="${ssh*1.1}" fill="${top}" stroke="rgba(0,0,0,.22)" stroke-width=".6"/>
      <ellipse cx="${sx}" cy="${sy-ssh*0.4}" rx="${sr}" ry="${ssh*0.85}" fill="${top}" stroke="rgba(255,255,255,.28)" stroke-width=".5"/>`
   ).join('');
   return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="${T}" fill="${top}"   stroke="rgba(0,0,0,.2)"  stroke-width=".8"/>
+    <polygon points="${T}" fill="${top}" stroke="rgba(0,0,0,.2)" stroke-width=".8"/>
     <polygon points="${F}" fill="${front}" stroke="rgba(0,0,0,.15)" stroke-width=".7"/>
-    <polygon points="${R}" fill="${side}"  stroke="rgba(0,0,0,.15)" stroke-width=".7"/>
+    <polygon points="${R}" fill="${side}" stroke="rgba(0,0,0,.15)" stroke-width=".7"/>
     ${studs}
   </svg>`;
 }
 
-const canvas=document.getElementById('lego-canvas');
 const brickEls=COLS.map(([top,front,side],i)=>{
   const el=document.createElement('div');
-  /* Each brick sits exactly RISE pixels higher than the one below,
-     so they look like a real stacked LEGO tower with no gap. */
-  const botOffset = BASE_BOT + i * RISE;
-  el.style.cssText=`
-    position:fixed;
-    right:${RIGHT_PAD}px;
-    bottom:${botOffset}px;
-    width:${BW}px;height:${BH}px;
-    pointer-events:none;
-    z-index:200;
-    opacity:0;
-    transform:translateY(-${BH+30}px);
-    transition:opacity .38s ease, transform .5s cubic-bezier(.22,1,.36,1);
-  `;
+  const bBot=BOT_BASE+i*RISE;
+  el.style.cssText=`position:fixed;right:${RIGHT_M}px;bottom:${bBot}px;width:${BW}px;height:${BH}px;pointer-events:none;z-index:50;opacity:0;transform:translateY(-${BH+30}px);transition:opacity .35s ease,transform .5s cubic-bezier(.22,1,.36,1);`;
   el.innerHTML=makeBrick(top,front,side);
-  canvas.appendChild(el);
+  legoCanvas.appendChild(el);
   return el;
 });
 
@@ -1234,222 +1375,6 @@ function updateBricks(){
 window.addEventListener('scroll',updateBricks,{passive:true});
 window.addEventListener('resize',updateBricks);
 setTimeout(updateBricks,200);
-document.querySelectorAll('.drawer-photo-zoom img').forEach(img=>{
-  img.addEventListener('click',e=>{
-    e.stopPropagation();
-    document.getElementById('lightbox-img').src=img.src;
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow='hidden';
-  });
-});
-function closeLightbox(){
-  document.getElementById('lightbox').classList.remove('open');
-  document.body.style.overflow='';
-}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox();});
 </script>
-
-<!-- ══ DRAWER: Campus Map ══ -->
-<div class="drawer dr-map" id="dr-map">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">INFO 333 · UX Design · Spring 2025</span>
-    <button class="drawer-close" onclick="closeD('dr-map')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Team Project · Figma · Accessibility · UIUC</p>
-    <h2 class="drawer-title" style="color:#3C7DD4;">Multi-Mode Campus Map.</h2>
-    <p class="drawer-desc">A multi-function campus map concept integrating accessibility routing, real-time space occupancy, dining options, and sports schedules into one unified platform — reducing the friction of navigating UIUC's large campus.</p>
-    <div class="drawer-tags"><span class="drawer-tag">UX Design</span><span class="drawer-tag">Figma</span><span class="drawer-tag">Wireframing</span><span class="drawer-tag">Accessibility (WCAG)</span><span class="drawer-tag">User Persona</span><span class="drawer-tag">INFO 333</span></div>
-    <div class="drawer-process"><p class="dp-label">What I did</p><p class="dp-text">Built interactive wireframes and conducted annotated walkthroughs to evaluate information hierarchy and navigation patterns. Developed a user persona in Figma, mapped pain points and motivations, and iterated on interface layouts based on peer usability feedback.</p></div>
-    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Key outcome</p><p class="dp-text">Presented a final concept addressing WCAG accessibility needs, schedule integration, and real-time space availability — balancing four distinct user modes (accessibility, dining, occupancy, sports) within a single coherent navigation system.</p></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo">User Flow:<img src="map.png"></div>
-      <div class="drawer-photo drawer-photo-lg">Story board:<img src="map1.png"></div>
-      <div class="drawer-photo">Login Page:<img src="map2.png"></div>
-      <div class="drawer-photo"><img src="map3.png"></div>
-      <div class="drawer-photo"><img src="map4.png"></div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ══ DRAWER: The Other Side of Life ══ -->
-<div class="drawer dr-ol" id="dr-ol">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">IS 101 · Game Studies &amp; Design · Fall 2024</span>
-    <button class="drawer-close" onclick="closeD('dr-ol')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Co-designed · iSchool Spring Showcase · UIUC</p>
-    <h2 class="drawer-title" style="color:#9B59D4;">The Other Side of Life.</h2>
-    <p class="drawer-desc">A social-awareness board game exploring racial bias and systemic inequality — inspired by The Game of Life, but redesigned so different characters (Blue, Orange, YangYang) interact with the same events in fundamentally different ways. Players gradually realise the bias baked into the system.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Game Design</span><span class="drawer-tag">Social Awareness</span><span class="drawer-tag">Playtesting</span><span class="drawer-tag">Algorithmic Bias</span><span class="drawer-tag">IS 101</span><span class="drawer-tag">iSchool Showcase</span></div>
-    <div class="drawer-process"><p class="dp-label">Problem I solved</p><p class="dp-text">Identified a core pacing problem — too many blank board squares were causing gameplay to stall and diluting the social message. Proposed and tested rule revisions (redistributing action and career card density) that significantly improved engagement and made the bias mechanics more legible to players.</p></div>
-    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Process &amp; reflection</p><p class="dp-text">Co-designed with a team of 5. Led two rounds of playtesting, documented player confusion around career and money rules, and iterated on card design. The moment players realised the game was rigged against certain characters was more powerful than any explanation — design can communicate social themes more effectively than text alone. Presented at the iSchool Spring Showcase.</p></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo"><img src="game.png"></div>
-      <div class="drawer-photo"><img src="game1.png"></div>
-      <div class="drawer-photo"><img src="game2.png"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ DRAWER: AI Email Organiser ══ -->
-<div class="drawer dr-email" id="dr-email">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">IS 226 · Interaction Design · Spring 2025</span>
-    <button class="drawer-close" onclick="closeD('dr-email')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Mobile App Concept · Paper Wireframes · Interface Analysis</p>
-    <h2 class="drawer-title" style="color:#00A888;">AI Student Email Organiser.</h2>
-    <p class="drawer-desc">A mobile app concept that automatically categorises student emails — assignments, events, packages, alerts — using keyword detection and contextual tagging. Designed to reduce the mental load of inbox management for busy students juggling coursework and campus life.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Interaction Design</span><span class="drawer-tag">Mobile UX</span><span class="drawer-tag">Wireframing</span><span class="drawer-tag">Visual Hierarchy</span><span class="drawer-tag">IS 226</span></div>
-    <div class="drawer-process"><p class="dp-label">What I designed</p><p class="dp-text">Created paper wireframes and interaction flows for login and inbox screens. Annotated key UI decisions — auto-labelled tags, contextual sidebar generation, chunked email categories — grounding each choice in principles of visual hierarchy, chunking, and alignment.</p></div>
-    <div class="drawer-process" style="margin-top:.75rem;"><p class="dp-label">Interface analysis</p><p class="dp-text">Analysed five real-world interfaces (Lookback, Best Buy, eBay, StockX, Instagram) through visual remix exercises — extracting patterns around information density, progressive disclosure, and CTA placement — then applied those findings directly to the email organiser design.</p></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo drawer-photo-lg"><img src="email.png"></div>
-      <div class="drawer-photo drawer-photo-lg"><img src="email1.png"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ DRAWER: Jersey Design ══ -->
-<div class="drawer dr-jersey" id="dr-jersey">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Wearable Design · Hotpot Basketball · UIUC 2024</span>
-    <button class="drawer-close" onclick="closeD('dr-jersey')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Graphic Design · Branding · Physical Product</p>
-    <h2 class="drawer-title" style="color:#E8872A;">Hotpot Jersey.</h2>
-    <p class="drawer-desc">Designed the official jersey for UIUC's Hotpot Chinese Women's Basketball team. A wearable that carries both team identity and cultural pride — extending the "Fire It Up" visual language into a physical product worn on court.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Graphic Design</span><span class="drawer-tag">Branding</span><span class="drawer-tag">Wearable Design</span><span class="drawer-tag">Physical Product</span></div>
-    <div class="drawer-process"><p class="dp-label">Design context</p><p class="dp-text">As team manager and designer, I handled visual identity across posters, social media, and uniforms. The jersey needed to feel energetic and cohesive with the campaign while being practical as sportswear — balancing bold typography, the Hotpot flame motif, and number legibility.</p></div>
-    <div class="drawer-photos">
-      <div class="drawer-photo">＋ Add jersey photo (front)</div>
-      <div class="drawer-photo">＋ Add jersey photo (detail / team)</div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ DRAWER: Art Portfolio ══ -->
-<div class="drawer dr-art" id="dr-art">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">High School Projects · 2020–2024 · Archive</span>
-    <button class="drawer-close" onclick="closeD('dr-art')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Creative &amp; Interactive Work · Pre-UIUC</p>
-    <h2 class="drawer-title" style="color:#A050DC;">Art Portfolio.</h2>
-    <p class="drawer-desc">Creative and interactive projects from before university — a mobile game, a physical interactive book, and a musical island concept. These projects formed the foundation of my design thinking and technical curiosity.</p>
-    <div class="drawer-tags"><span class="drawer-tag">Procreate</span><span class="drawer-tag">Blender</span><span class="drawer-tag">NFC + AR</span><span class="drawer-tag">Game Design</span><span class="drawer-tag">Physical Computing</span></div>
-
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Tea Mate — Smart Tea Table</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">A smart tea table guiding users through Chinese tea culture step by step. Arduino sensors track brew weight and time; TouchDesigner plays instruction video via serial port; QR payment integration. From concept sketch to working physical prototype.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo"><img src="teatable1.png"></div>
-      <div class="drawer-photo"><img src="teatable2.png"></div>
-      <div class="drawer-photo"><img src="teatable3.png"></div>
-      <div class="drawer-photo"><img src="teatable4.png"></div>
-    </div>
-    <a href="https://www.youtube.com/watch?v=ONm0FoyzQ4w" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
-
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Baby Ballon — Mobile Game</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">A social-awareness mobile game about "social giant babies." You play as the parent, facing real daily dilemmas. Three distinct endings based on your choices — designed, illustrated in Procreate, and user-tested end to end.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo"><img src="baby1.png"></div>
-      <div class="drawer-photo"><img src="baby2.png"></div>
-      <div class="drawer-photo"><img src="baby3.png"></div>
-      <div class="drawer-photo"><img src="baby4.png"></div>
-    </div>
-    <a href="https://youtu.be/jysZ125JNpg" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
-
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Two Brothers' Diary — Interactive Book</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">A physical pop-up book combining NFC audio chips, AR overlays via Reality Composer, and Blender 3D modelling. Led a multidisciplinary team from research to final product.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo"><img src="brother1.png"></div>
-      <div class="drawer-photo"><img src="brother2.png"></div>
-      <div class="drawer-photo"><img src="brother3.png"></div>
-      <div class="drawer-photo"><img src="brother4.png"></div>
-    </div>
-    <a href="https://youtu.be/aYRxI1NvMRog" target="_blank" class="drawer-btn" style="margin-bottom:2.5rem;display:inline-flex;">Watch Demo ↗</a>
-
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Musical Island — Concept &amp; Model</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">A stress-relief island for people with sleep disorders — island zoning, sleep pod UX, custom musical typeface, Procreate illustrations, and a 2400×1800mm physical foam model.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo"><img src="island1.png"></div>
-      <div class="drawer-photo"><img src="island2.png"></div>
-      <div class="drawer-photo"><img src="island3.png"></div>
-      <div class="drawer-photo"><img src="island4.png"></div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ CSS for drawer process ══ -->
-<style>
-.drawer-process{background:var(--paper);border-radius:12px;padding:1.25rem 1.4rem;margin-bottom:.75rem;border-left:3px solid var(--y);}
-.dp-label{font-size:.6rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:.5rem;}
-.dp-text{font-size:.88rem;font-weight:400;line-height:1.75;color:var(--mid);}
-.drawer-btn{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:.72rem 1.75rem;border-radius:10px;background:var(--ink);color:var(--cream);box-shadow:0 4px 0 rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s;}
-.drawer-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.35);}
-
-.drawer-photos{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2.5rem;}
-.drawer-photo{width:100%;border-radius:14px;overflow:hidden;background:var(--paper);border:none;}
-.drawer-photo img{width:100%;height:auto;display:block;border-radius:12px;}
-.drawer-photo-zoom{cursor:zoom-in;}
-.drawer-photo-zoom img{transition:transform .25s ease;}
-.drawer-photo-zoom img:hover{transform:scale(1.01);}
-#lightbox{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);align-items:center;justify-content:center;cursor:zoom-out;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:92vw;max-height:92vh;object-fit:contain;border-radius:8px;}
-#lightbox-close{position:absolute;top:1.2rem;right:1.4rem;color:#fff;font-size:1.6rem;cursor:pointer;opacity:.7;}
-#lightbox-close:hover{opacity:1;}
-.drawer-photo-sm{width:fit-content;}
-.drawer-photo-sm img{max-height:300px;width:auto;display:block;}
-.drawer-photo-md{width:fit-content;}
-.drawer-photo-md img{max-height:480px;width:auto;display:block;}
-.drawer-photo-lg{width:fit-content;}
-.drawer-photo-lg img{max-height:680px;width:auto;display:block;}
-</style>
-<!-- ══ DRAWER: Hotpot ══ -->
-<div class="drawer dr-hotpot" id="dr-hotpot">
-  <div class="drawer-header">
-    <span style="font-size:.7rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);">Hotpot Basketball · Graphic Design · UIUC 2024–2025</span>
-    <button class="drawer-close" onclick="closeD('dr-hotpot')">✕</button>
-  </div>
-  <div class="drawer-inner">
-    <p class="drawer-ey">Branding · Wearable Design · Graphic Design</p>
-    <h2 class="drawer-title" style="color:#E8412A;">Hotpot Women's Basketball.</h2>
-    <p class="drawer-desc">Player and team manager for UIUC's Chinese Women's Basketball team. Responsible for the full visual identity — from recruitment campaigns to the jersey worn on court. The "Fire It Up" brand system spans posters, social media graphics, and wearables.</p>
-    <div class="drawer-tags">
-      <span class="drawer-tag">Graphic Design</span><span class="drawer-tag">Wearable Design</span>
-      <span class="drawer-tag">Branding</span><span class="drawer-tag">Team Management</span>
-    </div>
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2rem 0 .75rem;">Recruitment Poster</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">The "Fire It Up" recruitment poster — bold typography, the Hotpot flame motif, and action photography combined into a high-impact campaign.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo drawer-photo-lg"><img src="hotpot1.jpg"></div>
-    </div>
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Jersey Design</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">The official Hotpot team jersey — extending the "Fire It Up" visual language into a wearable. Designed, shipped, and worn in real games.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo drawer-photo-lg"><img src="jersey.JPG"></div>
-      <div class="drawer-photo drawer-photo-lg"><img src="jersey1.JPG"></div>
-      <div class="drawer-photo drawer-photo-lg"><img src="jersey2.JPG"></div>
-      <div class="drawer-photo drawer-photo-lg"><img src="jersey3.JPG"></div>
-    </div>
-    <p style="font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);margin:2.5rem 0 .75rem;">Logo Design</p>
-    <p class="drawer-desc" style="margin-bottom:1.25rem;">Team logo design — merging Chinese hotpot culture with basketball iconography into a shield crest identity system.</p>
-    <div class="drawer-photos">
-      <div class="drawer-photo drawer-photo-lg"><img src="logo.JPG"></div>
-    </div>
-  </div>
-</div>
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <span id="lightbox-close">✕</span>
-  <img id="lightbox-img" src="" alt="">
-</div>
 </body>
 </html>
